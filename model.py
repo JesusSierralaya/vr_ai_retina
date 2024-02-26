@@ -16,8 +16,7 @@ class Cube:
     def get_texture(self, path):
         texture = pg.image.load(path).convert()
         texture = pg.transform.flip(texture, flip_x=False, flip_y=True)
-        # just pain the cube of red
-        texture.fill('red')
+        # texture.fill('red') # just pain the cube of red
         texture = self.ctx.texture(size=texture.get_size(), components=3,
                                    data=pg.image.tostring(texture, 'RGB'))
         return texture
