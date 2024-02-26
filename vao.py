@@ -37,6 +37,13 @@ class VAO:
         )
         # duck vao END --------------------------------------------
 
+        # grass vao --------------------------------------------
+        self.vaos['grass'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['grass']
+        )
+        # grass vao END --------------------------------------------
+
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
         return vao

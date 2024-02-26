@@ -12,6 +12,7 @@ class VBO:
         self.vbos['cat'] = CatVBO(ctx)
         self.vbos['skull'] = SkullVBO(ctx)
         self.vbos['duck'] = DuckVBO(ctx)
+        self.vbos['grass'] = GrassVBO(ctx)
         # end dictonary
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -122,6 +123,21 @@ class DuckVBO(BaseVBO):
 
     def get_vertex_data(self):
         objs = pywavefront.Wavefront('objects/duck/12248_Bird_v1_L2.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+# cat VBO END ------------------------------------------------------------
+
+# grass VBO ------------------------------------------------------------
+class GrassVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/grass/10450_Rectangular_Grass_Patch_v1_iterations-2.obj', cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
