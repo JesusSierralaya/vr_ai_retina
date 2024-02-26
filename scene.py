@@ -26,7 +26,8 @@ class Scene:
                 add(Cube(app, pos=(x, -s, z)))
 
         # add(Cat(app, pos=(0, -2, -10)))
-        add(Skull(app, pos=(0, -2, -10)))
+        # add(Skull(app, pos=(0, -2, -10)))
+        add(Duck(app, pos=(0, -2, -10)))
 
     def render(self):
         for obj in self.objects:

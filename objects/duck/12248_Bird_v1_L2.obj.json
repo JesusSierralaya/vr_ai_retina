@@ -1,0 +1,15 @@
+{
+  "created_at": "2024-02-26T23:44:52.672903",
+  "version": "0.1",
+  "mtllibs": [
+    "12248_Bird_v1_L2.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "12248_Bird_v1",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 1680384
+    }
+  ]
+}
