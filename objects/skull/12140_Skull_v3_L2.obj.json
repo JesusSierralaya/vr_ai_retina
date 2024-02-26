@@ -1,0 +1,15 @@
+{
+  "created_at": "2024-02-26T23:01:48.806528",
+  "version": "0.1",
+  "mtllibs": [
+    "12140_Skull_v3_L2.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "12140_Skull_v3",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 7681536
+    }
+  ]
+}

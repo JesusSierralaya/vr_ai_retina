@@ -16,11 +16,19 @@ class VAO:
             vbo = self.vbo.vbos['cube']
         )
 
-        # cat vao
+        # cat vao --------------------------------------------
         self.vaos['cat'] = self.get_vao( # 'cat' --> 'new_object'
             program=self.program.programs['default'],
-            vbo = self.vbo.vbos['cat']
+            vbo = self.vbo.vbos['cat'] # 'cat' --> 'new_object'
         )
+        # cat vao END --------------------------------------------
+
+        # skull vao --------------------------------------------
+        self.vaos['skull'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['skull']
+        )
+        # skull vao END --------------------------------------------
 
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
