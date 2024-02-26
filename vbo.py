@@ -13,6 +13,7 @@ class VBO:
         self.vbos['skull'] = SkullVBO(ctx)
         self.vbos['duck'] = DuckVBO(ctx)
         self.vbos['grass'] = GrassVBO(ctx)
+        self.vbos['slr_camera'] = SlrCameraVBO(ctx)
         # end dictonary
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -142,4 +143,19 @@ class GrassVBO(BaseVBO):
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
-# cat VBO END ------------------------------------------------------------
+# grass VBO END ------------------------------------------------------------
+
+# slr camera VBO ------------------------------------------------------
+class SlrCameraVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/slr_camera/10124_SLR_Camera_SG_V1_Iteration2.obj', cache=True, parse=True) # Location of the .obj
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+# slr camera VBO END ------------------------------------------------------------

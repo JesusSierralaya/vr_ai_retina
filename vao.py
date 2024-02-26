@@ -44,6 +44,13 @@ class VAO:
         )
         # grass vao END --------------------------------------------
 
+        # slr camera vao --------------------------------------------
+        self.vaos['slr_camera'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['slr_camera']
+        )
+        # slr camera vao END --------------------------------------------
+
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
         return vao
