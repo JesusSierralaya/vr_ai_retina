@@ -51,6 +51,13 @@ class VAO:
         )
         # slr camera vao END --------------------------------------------
 
+        # heart vao --------------------------------------------
+        self.vaos['heart'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['heart']
+        )
+        # heart vao END --------------------------------------------
+
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
         return vao

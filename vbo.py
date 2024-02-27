@@ -14,6 +14,7 @@ class VBO:
         self.vbos['duck'] = DuckVBO(ctx)
         self.vbos['grass'] = GrassVBO(ctx)
         self.vbos['slr_camera'] = SlrCameraVBO(ctx)
+        self.vbos['heart'] = HeartVBO(ctx)
         # end dictonary
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -159,3 +160,18 @@ class SlrCameraVBO(BaseVBO):
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 # slr camera VBO END ------------------------------------------------------------
+
+# heart VBO ------------------------------------------------------------
+class HeartVBO(BaseVBO): # New_objectVBO
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/heart/12190_Heart_v1_L3.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+# heart VBO END ------------------------------------------------------------
