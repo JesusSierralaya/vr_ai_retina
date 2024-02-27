@@ -16,6 +16,7 @@ class VBO:
         self.vbos['slr_camera'] = SlrCameraVBO(ctx)
         self.vbos['heart'] = HeartVBO(ctx)
         self.vbos['venus'] = VenusVBO(ctx)
+        self.vbos['david'] = DavidVBO(ctx)
         # end dictonary
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -191,3 +192,18 @@ class VenusVBO(BaseVBO):
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 # venus VBO END ------------------------------------------------------------
+
+# david VBO ------------------------------------------------------------
+class DavidVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/david/12330_Statue_v1_L2.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+# david VBO END ------------------------------------------------------------
