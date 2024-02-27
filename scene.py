@@ -30,7 +30,8 @@ class Scene:
         # add(Duck(app, pos=(0, -2, -10)))
         # add(Grass(app, pos=(0, -2, -10)))
         # add(SlrCamera(app, pos=(0, -2, -10)))
-        add(Heart(app, pos=(0, -2, -10)))
+        # add(Heart(app, pos=(0, -2, -10)))
+        add(Venus(app, pos=(0, -2, -10)))
 
     def render(self):
         for obj in self.objects:
