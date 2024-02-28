@@ -23,6 +23,7 @@ class Texture:
         self.textures['turtle'] = self.get_texture(path='objects/turtle/10042_Sea_Turtle_V1_Diffuse.jpg')
         self.textures['dolphin'] = self.get_texture(path='objects/dolphin/10014_dolphin_v1_Diffuse.jpg')
         self.textures['frog'] = self.get_texture(path='objects/frog/12268_banjofrog_diffuse.jpg')
+        self.textures['monkey'] = self.get_texture(path='objects/monkey/12958_Spider_Monkey_diff.jpg')
         # end dictionary
 
     def get_texture(self, path):

@@ -20,6 +20,7 @@ class VBO:
         self.vbos['turtle'] = TurtleVBO(ctx)
         self.vbos['dolphin'] = DolphinVBO(ctx)
         self.vbos['frog'] = FrogVBO(ctx)
+        self.vbos['monkey'] = MonkeyVBO(ctx)
         # end dictonary
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -255,3 +256,18 @@ class FrogVBO(BaseVBO): # New_objectVBO
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 # cat VBO END ------------------------------------------------------------
+
+# monkey VBO ------------------------------------------------------------
+class MonkeyVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/monkey/12958_Spider_Monkey_v1_l2.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+# monkey VBO END -------------------------------------------------------

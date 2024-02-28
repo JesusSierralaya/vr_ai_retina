@@ -35,7 +35,8 @@ class Scene:
         # add(David(app, pos=(0, -2, -10)))
         # add(Turtle(app, pos=(0, -2, -10)))
         # add(Dolphin(app, pos=(0, -2, -10)))
-        add(Frog(app, pos=(0, -2, -10)))
+        # add(Frog(app, pos=(0, -2, -10)))
+        add(Monkey(app, pos=(0, -2, -10)))
 
     def render(self):
         for obj in self.objects:
