@@ -100,6 +100,13 @@ class VAO:
         )
         # monkey vao END --------------------------------------------
 
+        # snake vao --------------------------------------------
+        self.vaos['snake'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['snake']
+        )
+        # snake vao END --------------------------------------------
+
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
         return vao

@@ -24,6 +24,7 @@ class Texture:
         self.textures['dolphin'] = self.get_texture(path='objects/dolphin/10014_dolphin_v1_Diffuse.jpg')
         self.textures['frog'] = self.get_texture(path='objects/frog/12268_banjofrog_diffuse.jpg')
         self.textures['monkey'] = self.get_texture(path='objects/monkey/12958_Spider_Monkey_diff.jpg')
+        self.textures['snake'] = self.get_texture(path='objects/snake/10050_RattleSnake_v04.jpg')
         # end dictionary
 
     def get_texture(self, path):
