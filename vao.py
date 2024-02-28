@@ -107,6 +107,13 @@ class VAO:
         )
         # snake vao END --------------------------------------------
 
+        # fish vao --------------------------------------------
+        self.vaos['fish'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['fish']
+        )
+        # fish vao END --------------------------------------------
+
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
         return vao
