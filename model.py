@@ -126,6 +126,7 @@ def create_surface_class(surface_id):
 
 # Dynamically create and assign Surface classes
 from config import surface_from, surface_to
-for i in range(surface_from, surface_to +1):
-    class_name = f"Surface{i}"
-    globals()[class_name] = create_surface_class(i)
+if surface_from > 0 and surface_to > 0:
+    for i in range(surface_from, surface_to +1):
+        class_name = f"Surface{i}"
+        globals()[class_name] = create_surface_class(i)

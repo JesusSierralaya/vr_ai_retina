@@ -2,9 +2,9 @@
 
 # config.py
 
-# Define surface range
-surface_from = 6
-surface_to = 8
+# Define surface range # render nothing 0 0
+surface_from = 0
+surface_to = 0
 # parameters
 invert_y = -1
 position = (0, 15, -5)

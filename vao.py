@@ -24,12 +24,13 @@ class VAO:
 
         # Surfaces vao --------------------------------
         from config import surface_from, surface_to
-        for i in range(surface_from, surface_to+1):
-            surface_key = f'surface_{i}'
-            self.vaos[surface_key] = self.get_vao(
-                program=self.program.programs['default'],
-                vbo=self.vbo.vbos[surface_key]
-            )
+        if surface_from > 0 and surface_to > 0:
+            for i in range(surface_from, surface_to+1):
+                surface_key = f'surface_{i}'
+                self.vaos[surface_key] = self.get_vao(
+                    program=self.program.programs['default'],
+                    vbo=self.vbo.vbos[surface_key]
+                )
         # Surfaces vao END --------------------------------
 
     def get_vao(self, program, vbo):

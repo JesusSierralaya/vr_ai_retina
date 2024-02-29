@@ -35,15 +35,14 @@ class Scene:
 
         # Assuming 'app' is your application context and 'add' is a function to add surfaces
         from config import surface_from, surface_to
-        for i in range(surface_from, surface_to + 1):
-            # Calculate the y-coordinate for 'pos', starting at 2 and increasing by 2 each iteration
-            # y_pos = i
-            # Dynamically generate the class name for the Surface
-            surface_class = globals()[f'Surface{i}']
-            # Create an instance of the Surface with the specified 'pos'
-            surface_instance = surface_class(app)
-            # Add the surface instance to the application
-            add(surface_instance)
+        if surface_from > 0 and surface_to > 0:
+            for i in range(surface_from, surface_to + 1):
+                # Dynamically generate the class name for the Surface
+                surface_class = globals()[f'Surface{i}']
+                # Create an instance of the Surface with the specified 'pos'
+                surface_instance = surface_class(app)
+                # Add the surface instance to the application
+                add(surface_instance)
 
 
     def render(self):

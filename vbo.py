@@ -12,9 +12,10 @@ class VBO:
         self.vbos['cat'] = CatVBO(ctx)
         # Dictionary surfaces ------------------------
         from config import surface_from, surface_to
-        for i in range(surface_from, surface_to+1):
-            surface_key = f'surface_{i}'
-            self.vbos[surface_key] = SurfaceVBO(ctx, i)
+        if surface_from > 0 and surface_to > 0:
+            for i in range(surface_from, surface_to+1):
+                surface_key = f'surface_{i}'
+                self.vbos[surface_key] = SurfaceVBO(ctx, i)
         # Dictionary surfaces END ------------------------
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
