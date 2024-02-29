@@ -26,7 +26,7 @@ class Scene:
         #         add(Cube(app, pos=(x, -s, z)))
 
         # add(Cat(app, pos=(0, -2, -10)))
-        add(SurfaceOver1(app, pos=(0, 2, -5)))
+        add(Surface1(app, pos=(0, 2, -5)))
 
     def render(self):
         for obj in self.objects:

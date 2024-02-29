@@ -11,7 +11,7 @@ class VBO:
         self.vbos['cube'] = CubeVBO(ctx)
         self.vbos['cat'] = CatVBO(ctx)
         # Dictionary
-        self.vbos['surface_over_1'] = SurfaceOver1VBO(ctx)
+        self.vbos['surface_1'] = Surface1VBO(ctx)
         # Dictionary End
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -98,9 +98,9 @@ class CatVBO(BaseVBO):
 # SURFACES -------------------------------------------
 # constants
 scale = 2
-layer = 1
+surface = 1
 
-class SurfaceOver1VBO(BaseVBO):
+class Surface1VBO(BaseVBO):
     def __init__(self, ctx):
         super().__init__(ctx)
         self.format = '2f 3f 3f'
@@ -112,15 +112,14 @@ class SurfaceOver1VBO(BaseVBO):
         return np.array(data, dtype='f4')
 
     def get_vertex_data(self):
-        layer = 1
-        X = pd.read_csv(f'surfaces_data/x_{layer}.txt',header=None)
-        X = np.array(X*-scale)
-        Y = pd.read_csv(f'surfaces_data/y_{layer}.txt',header=None)
-        Y = np.array(Y*-scale)
-        Z = pd.read_csv(f'surfaces_data/z_{layer}.txt',header=None)
-        Z = np.array(Z*-scale)
+        X = pd.read_csv(f'surfaces_data/x_{surface}.txt', header=None)
+        X = np.array(X * -scale)
+        Y = pd.read_csv(f'surfaces_data/y_{surface}.txt', header=None)
+        Y = np.array(Y * -scale)
+        Z = pd.read_csv(f'surfaces_data/z_{surface}.txt', header=None)
+        Z = np.array(Z * -scale)
 
-        # swap axis
+        # Swap axis
         Y, Z = Z, Y
 
         # Flatten and stack the X, Y, Z matrices to create the vertices
@@ -130,36 +129,35 @@ class SurfaceOver1VBO(BaseVBO):
             indices = []
             tex_coord_vertices = []
 
-            # Generate indices and texture coordinates
             for y in range(size - 1):
                 for x in range(size - 1):
-                    # Add indices for two triangles (square) - note the reversed order
                     indices.append((y * size + x, (y + 1) * size + x, y * size + x + 1))
                     indices.append((y * size + x + 1, (y + 1) * size + x, (y + 1) * size + x + 1))
 
             for y in range(size):
                 for x in range(size):
-                    # Add texture coordinate for vertex
                     tex_coord_vertices.append((x / (size - 1), y / (size - 1)))
 
             return indices, tex_coord_vertices
 
         size = np.size(X[0])
-        #print(size)
         indices, tex_coord_vertices = generate_indices_and_tex_coords(size)
 
-        vertex_data = self.get_data(vertices, indices)
+        # Duplicate vertices for the second surface
+        vertices_double = np.vstack([vertices, vertices])
 
-        # Create texture coordinates
-        tex_coord_indices = indices  # Reuse the same indices for texture coordinates
-        tex_coord_data = self.get_data(tex_coord_vertices, tex_coord_indices)
+        # Reverse indices for the second set of triangles
+        indices_double = indices + [(i[2] + len(vertices), i[1] + len(vertices), i[0] + len(vertices)) for i in indices]
 
-        # Create normals (assuming all normals point upwards in the Z direction)
-        normals = [(0, 0, 1) for _ in range(size*size)]  # 16 vertices
-        normals = [normals[i] for triangle in indices for i in triangle]  # repeat normals for each vertex
+        # Generate normals for both sides, flipping them for the second set
+        normals = [(0, 0, 1) for _ in range(len(vertices))] + [(0, 0, -1) for _ in range(len(vertices))]
+        normals = [normals[i] for triangle in indices_double for i in triangle]
         normals = np.array(normals, dtype='f4')
 
-        vertex_data = np.hstack([normals, vertex_data])
-        vertex_data = np.hstack([tex_coord_data, vertex_data])
+        vertex_data = self.get_data(vertices_double, indices_double)
+        tex_coord_data = self.get_data(tex_coord_vertices * 2, indices_double)  # Duplicate texture coords for the second surface
+
+        # Combine the vertex attributes
+        vertex_data = np.hstack([tex_coord_data, normals, vertex_data])
 
         return vertex_data

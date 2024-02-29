@@ -89,8 +89,8 @@ class Cat(BaseModel):
 # CAT END --------------------------------------------------------------------
 
 # Surface over 1 -------------------------------------------------------------
-class SurfaceOver1(BaseModel):
-    def __init__(self, app, vao_name='surface_over_1', tex_id='surface_over_1', pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+class Surface1(BaseModel):
+    def __init__(self, app, vao_name='surface_1', tex_id='surface_1', pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 

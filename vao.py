@@ -23,9 +23,9 @@ class VAO:
         )
 
         # surface over 1 vao --------------------------------
-        self.vaos['surface_over_1'] = self.get_vao(
+        self.vaos['surface_1'] = self.get_vao(
             program=self.program.programs['default'],
-            vbo = self.vbo.vbos['surface_over_1']
+            vbo = self.vbo.vbos['surface_1']
         )
         # surface over 1 vao END --------------------------------
 

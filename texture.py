@@ -15,7 +15,7 @@ class Texture:
         # self.textures['new_object'] = self.get_texture(path='objects/cat/new_object.jpg')
         self.textures['cat'] = self.get_texture(path='objects/cat/20430_cat_diff_v1.jpg')
         # surfaces textures -------------------------
-        self.textures['surface_over_1'] = self.get_texture(path='textures/layer_ball.jpeg')
+        self.textures['surface_1'] = self.get_texture(path='textures/layer_ball.jpeg')
         # surfaces textures -------------------------
     def get_texture(self, path):
         texture = pg.image.load(path).convert()
