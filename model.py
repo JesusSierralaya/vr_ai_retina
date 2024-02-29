@@ -118,13 +118,14 @@ class BaseSurface(BaseModel):
 # Base Surfaces END -------------------------------------------------------
 def create_surface_class(surface_id):
     class Surface(BaseSurface):
-        def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 10, 1)):
+        from config import position, rotation, scale
+        def __init__(self, app, tex_id=1, pos=position, rot=rotation, scale=scale):
             vao_name = f'surface_{surface_id}'
             super().__init__(app, vao_name, tex_id, pos, rot, scale)
     return Surface
 
 # Dynamically create and assign Surface classes
-surface_from = 1; surface_to = 6
+from config import surface_from, surface_to
 for i in range(surface_from, surface_to +1):
     class_name = f"Surface{i}"
     globals()[class_name] = create_surface_class(i)

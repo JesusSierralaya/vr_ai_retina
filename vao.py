@@ -23,7 +23,7 @@ class VAO:
         )
 
         # Surfaces vao --------------------------------
-        surface_from = 1; surface_to = 6
+        from config import surface_from, surface_to
         for i in range(surface_from, surface_to+1):
             surface_key = f'surface_{i}'
             self.vaos[surface_key] = self.get_vao(

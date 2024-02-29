@@ -11,7 +11,7 @@ class VBO:
         self.vbos['cube'] = CubeVBO(ctx)
         self.vbos['cat'] = CatVBO(ctx)
         # Dictionary surfaces ------------------------
-        surface_from = 1; surface_to = 6
+        from config import surface_from, surface_to
         for i in range(surface_from, surface_to+1):
             surface_key = f'surface_{i}'
             self.vbos[surface_key] = SurfaceVBO(ctx, i)
@@ -99,9 +99,6 @@ class CatVBO(BaseVBO):
         return vertex_data
 
 # SURFACES -------------------------------------------
-# constants
-scale = 2
-
 class SurfaceVBO(BaseVBO):
     def __init__(self, ctx, surface_number):
         self.surface_number = surface_number
@@ -118,9 +115,10 @@ class SurfaceVBO(BaseVBO):
         X = pd.read_csv(f'surfaces_data/x_{self.surface_number}.txt', header=None)
         Y = pd.read_csv(f'surfaces_data/y_{self.surface_number}.txt', header=None)
         Z = pd.read_csv(f'surfaces_data/z_{self.surface_number}.txt', header=None)
-        X = np.array(X * -scale)
-        Y = np.array(Y * -scale)
-        Z = np.array(Z * -scale)
+        from config import invert_y
+        X = np.array(X * invert_y)
+        Y = np.array(Y * invert_y)
+        Z = np.array(Z * invert_y)
 
         # Swap axis
         Y, Z = Z, Y
