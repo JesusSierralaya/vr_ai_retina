@@ -15,4 +15,5 @@ scale = (2, 10, 2)
 objects = (
     'cat',
     'venus',
+    'david',
 )

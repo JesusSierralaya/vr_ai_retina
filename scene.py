@@ -24,11 +24,12 @@ class Scene:
         n, s = 40, 2
         for x in range(-n, n, s):
             for z in range(-n, n, s):
-                add(Cube(app, pos=(x, -s -1, z)))
+                add(Cube(app, pos=(x, -s +1, z)))
 
         # add objects
-        add(Cat(app, pos=(0, -2, -10)))
-        add(Venus(app, pos=(10, -2, -10)))
+        add(Cat(app, pos=(0, 0, -10)))
+        add(Venus(app, pos=(10, 0, -10)))
+        add(David(app, pos=(-10, 0, -10)))
 
         # Surfaces -------------------------------------------
         from config import surface_from, surface_to

@@ -139,4 +139,8 @@ class Venus(BaseObjectModel):
     def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.05, .05, .05)):
         super().__init__(app, vao_name='venus', tex_id='venus', pos=pos, rot=rot, scale=scale)
 
+class David(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.02, .02, .02)):
+        super().__init__(app, vao_name='david', tex_id='david', pos=pos, rot=rot, scale=scale)
+
 # Object models END ------------------------------------------------------

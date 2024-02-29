@@ -183,4 +183,8 @@ class VenusVBO(BaseObjectVBO):
     def __init__(self, app):
         super().__init__(app, 'objects/venus/12328_Statue_v1_L2.obj')
 
+class DavidVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/david/12330_Statue_v1_L2.obj')
+
 # OBJECTS VBO END -------------------------------------------
