@@ -39,10 +39,8 @@ vec3 getLight(vec3 color) {
 
 void main() {
     float gamma = 2.2;
-    // select color vec3 color = vec3(uv_0, 0);
     vec3 color = texture(u_texture_0, uv_0).rgb;
     color = pow(color, vec3(gamma));
-
     color = getLight(color);
 
     color = pow(color, 1 / vec3(gamma));

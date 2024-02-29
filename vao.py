@@ -22,6 +22,13 @@ class VAO:
             vbo = self.vbo.vbos['cat']
         )
 
+        # surface over 1 vao --------------------------------
+        self.vaos['surface_over_1'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo = self.vbo.vbos['surface_over_1']
+        )
+        # surface over 1 vao END --------------------------------
+
     def get_vao(self, program, vbo):
         vao = self.ctx.vertex_array(program, [(vbo.vbo, vbo.format, *vbo.attribs)])
         return vao
