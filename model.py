@@ -116,15 +116,17 @@ class BaseSurface(BaseModel):
         self.program['light.Is'].write(self.app.light.Is)
 
 # Base Surfaces END -------------------------------------------------------
+def create_surface_class(surface_id):
+    class Surface(BaseSurface):
+        def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 10, 1)):
+            vao_name = f'surface_{surface_id}'
+            super().__init__(app, vao_name, tex_id, pos, rot, scale)
+    return Surface
 
-class Surface1(BaseSurface):
-    def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
-        super().__init__(app, vao_name='surface_1', tex_id=tex_id, pos=pos, rot=rot, scale=scale)
-
-class Surface2(BaseSurface):
-    def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
-        super().__init__(app, vao_name='surface_2', tex_id=tex_id, pos=pos, rot=rot, scale=scale)
-
-class Surface3(BaseSurface):
-    def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
-        super().__init__(app, vao_name='surface_3', tex_id=tex_id, pos=pos, rot=rot, scale=scale)
+# Dynamically create the Surface classes
+Surface1 = create_surface_class(1)
+Surface2 = create_surface_class(2)
+Surface3 = create_surface_class(3)
+Surface4 = create_surface_class(4)
+Surface5 = create_surface_class(5)
+Surface6 = create_surface_class(6)

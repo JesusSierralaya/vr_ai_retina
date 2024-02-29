@@ -29,6 +29,9 @@ class Scene:
         add(Surface1(app, pos=(0, 2, -5)))
         add(Surface2(app, pos=(0, 4, -5)))
         add(Surface3(app, pos=(0, 6, -5), tex_id=3))
+        add(Surface4(app, pos=(0, 8, -5), tex_id=2))
+        add(Surface5(app, pos=(0, 10, -5), tex_id=2))
+        add(Surface6(app, pos=(0, 12, -5), tex_id=2))
 
     def render(self):
         for obj in self.objects:

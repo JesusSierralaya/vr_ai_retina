@@ -14,6 +14,9 @@ class VBO:
         self.vbos['surface_1'] = SurfaceVBO(ctx, 1)
         self.vbos['surface_2'] = SurfaceVBO(ctx, 2)
         self.vbos['surface_3'] = SurfaceVBO(ctx, 3)
+        self.vbos['surface_4'] = SurfaceVBO(ctx, 4)
+        self.vbos['surface_5'] = SurfaceVBO(ctx, 5)
+        self.vbos['surface_6'] = SurfaceVBO(ctx, 6)
         # Dictionary End
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
