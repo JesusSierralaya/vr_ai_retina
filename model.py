@@ -59,36 +59,8 @@ class Cube(BaseModel):
         self.program['light.Id'].write(self.app.light.Id)
         self.program['light.Is'].write(self.app.light.Is)
 
-# CAT ----------------------------------------------------------------------
-class Cat(BaseModel):
-    def __init__(self, app, vao_name='cat', tex_id='cat', pos=(0, 0, 0), rot=(-90, 0, 0), scale=(1, 1, 1)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-        self.on_init()
 
-    def update(self):
-        self.texture.use()
-        self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.m_view)
-        self.program['m_model'].write(self.m_model)
-
-    def on_init(self):
-        # texture
-        self.texture = self.app.mesh.texture.textures[self.tex_id]
-        self.program['u_texture_0'] = 0
-        self.texture.use()
-        # mvp
-        self.program['m_proj'].write(self.camera.m_proj)
-        self.program['m_view'].write(self.camera.m_view)
-        self.program['m_model'].write(self.m_model)
-        # light
-        self.program['light.position'].write(self.app.light.position)
-        self.program['light.Ia'].write(self.app.light.Ia)
-        self.program['light.Id'].write(self.app.light.Id)
-        self.program['light.Is'].write(self.app.light.Is)
-
-# CAT END --------------------------------------------------------------------
-
-# Base Surface -------------------------------------------------------------
+# Surfaces Model -------------------------------------------------------------
 class BaseSurface(BaseModel):
     def __init__(self, app, vao_name, tex_id, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
@@ -115,7 +87,6 @@ class BaseSurface(BaseModel):
         self.program['light.Id'].write(self.app.light.Id)
         self.program['light.Is'].write(self.app.light.Is)
 
-# Base Surfaces END -------------------------------------------------------
 def create_surface_class(surface_id):
     class Surface(BaseSurface):
         from config import position, rotation, scale
@@ -130,3 +101,58 @@ if surface_from > 0 and surface_to > 0:
     for i in range(surface_from, surface_to +1):
         class_name = f"Surface{i}"
         globals()[class_name] = create_surface_class(i)
+# Surfaces Model END ------------------------------------------------------
+
+# Object models -----------------------------------------------------------
+class Cat(BaseModel):
+    def __init__(self, app, vao_name='cat', tex_id='cat', pos=(0, 0, 0), rot=(-90, 0, 0), scale=(.4, .4, .4)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        self.on_init()
+
+    def update(self):
+        self.texture.use()
+        self.program['camPos'].write(self.camera.position)
+        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_model'].write(self.m_model)
+
+    def on_init(self):
+        # texture
+        self.texture = self.app.mesh.texture.textures[self.tex_id]
+        self.program['u_texture_0'] = 0
+        self.texture.use()
+        # mvp
+        self.program['m_proj'].write(self.camera.m_proj)
+        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_model'].write(self.m_model)
+        # light
+        self.program['light.position'].write(self.app.light.position)
+        self.program['light.Ia'].write(self.app.light.Ia)
+        self.program['light.Id'].write(self.app.light.Id)
+        self.program['light.Is'].write(self.app.light.Is)
+
+class Venus(BaseModel):
+    def __init__(self, app, vao_name='venus', tex_id='venus', pos=(0, 0, 0), rot=(-90, 0, 0), scale=(0.05, 0.05, 0.05)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        self.on_init()
+
+    def update(self):
+        self.texture.use()
+        self.program['camPos'].write(self.camera.position)
+        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_model'].write(self.m_model)
+
+    def on_init(self):
+        # texture
+        self.texture = self.app.mesh.texture.textures[self.tex_id]
+        self.program['u_texture_0'] = 0
+        self.texture.use()
+        # mvp
+        self.program['m_proj'].write(self.camera.m_proj)
+        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_model'].write(self.m_model)
+        # light
+        self.program['light.position'].write(self.app.light.position)
+        self.program['light.Ia'].write(self.app.light.Ia)
+        self.program['light.Id'].write(self.app.light.Id)
+        self.program['light.Is'].write(self.app.light.Is)
+# Object models END ------------------------------------------------------

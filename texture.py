@@ -11,14 +11,12 @@ class Texture:
         self.textures[1] = self.get_texture(path='textures/img_1.png')
         self.textures[2] = self.get_texture(path='textures/img_2.png')
         self.textures[3] = self.get_texture(path='textures/test.png')
-        # add other textures
-        # self.textures['new_object'] = self.get_texture(path='objects/cat/new_object.jpg')
+
+        # object textures ------------------------------------------
         self.textures['cat'] = self.get_texture(path='objects/cat/20430_cat_diff_v1.jpg')
-        # surfaces textures -------------------------
-        # for i in range(1, 4):
-        #     surface_key = f'surface_{i}'
-        #     self.textures[surface_key] = self.get_texture(path='textures/layer_ball.jpeg')
-        # surfaces textures END -------------------------
+        self.textures['venus'] = self.get_texture(path='objects/venus/statue.jpg')
+        # object textures END ------------------------------------------
+
     def get_texture(self, path):
         texture = pg.image.load(path).convert()
         texture = pg.transform.flip(texture, flip_x=False, flip_y=True)

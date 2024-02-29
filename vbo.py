@@ -9,7 +9,6 @@ class VBO:
     def __init__(self, ctx):
         self.vbos = {}
         self.vbos['cube'] = CubeVBO(ctx)
-        self.vbos['cat'] = CatVBO(ctx)
         # Dictionary surfaces ------------------------
         from config import surface_from, surface_to
         if surface_from > 0 and surface_to > 0:
@@ -17,6 +16,10 @@ class VBO:
                 surface_key = f'surface_{i}'
                 self.vbos[surface_key] = SurfaceVBO(ctx, i)
         # Dictionary surfaces END ------------------------
+        # Dictionary objects ------------------------
+        self.vbos['cat'] = CatVBO(ctx)
+        self.vbos['venus'] = VenusVBO(ctx)
+        # Dictionary objects END ------------------------
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
 
@@ -86,20 +89,7 @@ class CubeVBO(BaseVBO):
 
         return vertex_data
 
-class CatVBO(BaseVBO):
-    def __init__(self, app):
-        super().__init__(app)
-        self.format = '2f 3f 3f'
-        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
-
-    def get_vertex_data(self):
-        objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
-        obj = objs.materials.popitem()[1]
-        vertex_data = obj.vertices
-        vertex_data = np.array(vertex_data, dtype='f4')
-        return vertex_data
-
-# SURFACES -------------------------------------------
+# SURFACES VBO -------------------------------------------
 class SurfaceVBO(BaseVBO):
     def __init__(self, ctx, surface_number):
         self.surface_number = surface_number
@@ -163,3 +153,33 @@ class SurfaceVBO(BaseVBO):
         vertex_data = np.hstack([tex_coord_data, normals, vertex_data])
 
         return vertex_data
+
+# SURFACES VBO END -------------------------------------------
+
+# OBJECTS VBO-------------------------------------------
+class CatVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+
+class VenusVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/venus/12328_Statue_v1_L2.obj', cache=True, parse=True) # Location of the .obj
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+# OBJECTS VBO END -------------------------------------------
