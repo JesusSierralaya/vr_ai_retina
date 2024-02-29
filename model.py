@@ -123,10 +123,8 @@ def create_surface_class(surface_id):
             super().__init__(app, vao_name, tex_id, pos, rot, scale)
     return Surface
 
-# Dynamically create the Surface classes
-Surface1 = create_surface_class(1)
-Surface2 = create_surface_class(2)
-Surface3 = create_surface_class(3)
-Surface4 = create_surface_class(4)
-Surface5 = create_surface_class(5)
-Surface6 = create_surface_class(6)
+# Dynamically create and assign Surface classes
+surface_from = 1; surface_to = 6
+for i in range(surface_from, surface_to +1):
+    class_name = f"Surface{i}"
+    globals()[class_name] = create_surface_class(i)

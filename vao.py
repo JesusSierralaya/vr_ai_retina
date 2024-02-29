@@ -23,7 +23,8 @@ class VAO:
         )
 
         # Surfaces vao --------------------------------
-        for i in range(1, 7):
+        surface_from = 1; surface_to = 6
+        for i in range(surface_from, surface_to+1):
             surface_key = f'surface_{i}'
             self.vaos[surface_key] = self.get_vao(
                 program=self.program.programs['default'],

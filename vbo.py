@@ -10,14 +10,12 @@ class VBO:
         self.vbos = {}
         self.vbos['cube'] = CubeVBO(ctx)
         self.vbos['cat'] = CatVBO(ctx)
-        # Dictionary
-        self.vbos['surface_1'] = SurfaceVBO(ctx, 1)
-        self.vbos['surface_2'] = SurfaceVBO(ctx, 2)
-        self.vbos['surface_3'] = SurfaceVBO(ctx, 3)
-        self.vbos['surface_4'] = SurfaceVBO(ctx, 4)
-        self.vbos['surface_5'] = SurfaceVBO(ctx, 5)
-        self.vbos['surface_6'] = SurfaceVBO(ctx, 6)
-        # Dictionary End
+        # Dictionary surfaces ------------------------
+        surface_from = 1; surface_to = 6
+        for i in range(surface_from, surface_to+1):
+            surface_key = f'surface_{i}'
+            self.vbos[surface_key] = SurfaceVBO(ctx, i)
+        # Dictionary surfaces END ------------------------
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
 
