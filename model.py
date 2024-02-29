@@ -88,9 +88,9 @@ class Cat(BaseModel):
 
 # CAT END --------------------------------------------------------------------
 
-# Surface over 1 -------------------------------------------------------------
-class Surface1(BaseModel):
-    def __init__(self, app, vao_name='surface_1', tex_id='surface_1', pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+# Base Surface -------------------------------------------------------------
+class BaseSurface(BaseModel):
+    def __init__(self, app, vao_name, tex_id, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
@@ -115,4 +115,16 @@ class Surface1(BaseModel):
         self.program['light.Id'].write(self.app.light.Id)
         self.program['light.Is'].write(self.app.light.Is)
 
-# Surface over 1 END -------------------------------------------------------
+# Base Surfaces END -------------------------------------------------------
+
+class Surface1(BaseSurface):
+    def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name='surface_1', tex_id=tex_id, pos=pos, rot=rot, scale=scale)
+
+class Surface2(BaseSurface):
+    def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name='surface_2', tex_id=tex_id, pos=pos, rot=rot, scale=scale)
+
+class Surface3(BaseSurface):
+    def __init__(self, app, tex_id=1, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name='surface_3', tex_id=tex_id, pos=pos, rot=rot, scale=scale)

@@ -27,6 +27,8 @@ class Scene:
 
         # add(Cat(app, pos=(0, -2, -10)))
         add(Surface1(app, pos=(0, 2, -5)))
+        add(Surface2(app, pos=(0, 4, -5)))
+        add(Surface3(app, pos=(0, 6, -5), tex_id=3))
 
     def render(self):
         for obj in self.objects:

@@ -11,7 +11,9 @@ class VBO:
         self.vbos['cube'] = CubeVBO(ctx)
         self.vbos['cat'] = CatVBO(ctx)
         # Dictionary
-        self.vbos['surface_1'] = Surface1VBO(ctx)
+        self.vbos['surface_1'] = SurfaceVBO(ctx, 1)
+        self.vbos['surface_2'] = SurfaceVBO(ctx, 2)
+        self.vbos['surface_3'] = SurfaceVBO(ctx, 3)
         # Dictionary End
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -98,10 +100,10 @@ class CatVBO(BaseVBO):
 # SURFACES -------------------------------------------
 # constants
 scale = 2
-surface = 1
 
-class Surface1VBO(BaseVBO):
-    def __init__(self, ctx):
+class SurfaceVBO(BaseVBO):
+    def __init__(self, ctx, surface_number):
+        self.surface_number = surface_number
         super().__init__(ctx)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
@@ -112,11 +114,11 @@ class Surface1VBO(BaseVBO):
         return np.array(data, dtype='f4')
 
     def get_vertex_data(self):
-        X = pd.read_csv(f'surfaces_data/x_{surface}.txt', header=None)
+        X = pd.read_csv(f'surfaces_data/x_{self.surface_number}.txt', header=None)
+        Y = pd.read_csv(f'surfaces_data/y_{self.surface_number}.txt', header=None)
+        Z = pd.read_csv(f'surfaces_data/z_{self.surface_number}.txt', header=None)
         X = np.array(X * -scale)
-        Y = pd.read_csv(f'surfaces_data/y_{surface}.txt', header=None)
         Y = np.array(Y * -scale)
-        Z = pd.read_csv(f'surfaces_data/z_{surface}.txt', header=None)
         Z = np.array(Z * -scale)
 
         # Swap axis
