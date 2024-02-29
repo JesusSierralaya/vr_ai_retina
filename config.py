@@ -10,3 +10,9 @@ invert_y = -1
 position = (0, 15, -5)
 rotation = (0, 90, 0) # y = 90 change the light
 scale = (2, 10, 2)
+
+# objects
+objects = (
+    'cat',
+    'venus',
+)

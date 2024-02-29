@@ -104,8 +104,9 @@ if surface_from > 0 and surface_to > 0:
 # Surfaces Model END ------------------------------------------------------
 
 # Object models -----------------------------------------------------------
-class Cat(BaseModel):
-    def __init__(self, app, vao_name='cat', tex_id='cat', pos=(0, 0, 0), rot=(-90, 0, 0), scale=(.4, .4, .4)):
+
+class BaseObjectModel(BaseModel):
+    def __init__(self, app, vao_name, tex_id, pos, rot, scale):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
@@ -130,29 +131,12 @@ class Cat(BaseModel):
         self.program['light.Id'].write(self.app.light.Id)
         self.program['light.Is'].write(self.app.light.Is)
 
-class Venus(BaseModel):
-    def __init__(self, app, vao_name='venus', tex_id='venus', pos=(0, 0, 0), rot=(-90, 0, 0), scale=(0.05, 0.05, 0.05)):
-        super().__init__(app, vao_name, tex_id, pos, rot, scale)
-        self.on_init()
+class Cat(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.4, .4, .4)):
+        super().__init__(app, vao_name='cat', tex_id='cat', pos=pos, rot=rot, scale=scale)
 
-    def update(self):
-        self.texture.use()
-        self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.m_view)
-        self.program['m_model'].write(self.m_model)
+class Venus(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.05, .05, .05)):
+        super().__init__(app, vao_name='venus', tex_id='venus', pos=pos, rot=rot, scale=scale)
 
-    def on_init(self):
-        # texture
-        self.texture = self.app.mesh.texture.textures[self.tex_id]
-        self.program['u_texture_0'] = 0
-        self.texture.use()
-        # mvp
-        self.program['m_proj'].write(self.camera.m_proj)
-        self.program['m_view'].write(self.camera.m_view)
-        self.program['m_model'].write(self.m_model)
-        # light
-        self.program['light.position'].write(self.app.light.position)
-        self.program['light.Ia'].write(self.app.light.Ia)
-        self.program['light.Id'].write(self.app.light.Id)
-        self.program['light.Is'].write(self.app.light.Is)
 # Object models END ------------------------------------------------------

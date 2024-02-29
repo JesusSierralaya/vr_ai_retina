@@ -17,8 +17,11 @@ class VBO:
                 self.vbos[surface_key] = SurfaceVBO(ctx, i)
         # Dictionary surfaces END ------------------------
         # Dictionary objects ------------------------
-        self.vbos['cat'] = CatVBO(ctx)
-        self.vbos['venus'] = VenusVBO(ctx)
+        from config import objects
+        for obj_name in objects:
+            self.vbos[obj_name] = globals()[f"{obj_name.capitalize()}VBO"](ctx)
+        # self.vbos['cat'] = CatVBO(ctx)
+        # self.vbos['venus'] = VenusVBO(ctx)
         # Dictionary objects END ------------------------
     def destroy(self):
         [vbo.destroy() for vbo in self.vbos.values()]
@@ -157,29 +160,27 @@ class SurfaceVBO(BaseVBO):
 # SURFACES VBO END -------------------------------------------
 
 # OBJECTS VBO-------------------------------------------
-class CatVBO(BaseVBO):
-    def __init__(self, app):
+
+class BaseObjectVBO(BaseVBO):
+    def __init__(self, app, obj_file):
+        self.obj_file = obj_file
         super().__init__(app)
         self.format = '2f 3f 3f'
         self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
 
     def get_vertex_data(self):
-        objs = pywavefront.Wavefront('objects/cat/20430_Cat_v1_NEW.obj', cache=True, parse=True)
+        objs = pywavefront.Wavefront(self.obj_file, cache=True, parse=True)
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 
-class VenusVBO(BaseVBO):
+class CatVBO(BaseObjectVBO):
     def __init__(self, app):
-        super().__init__(app)
-        self.format = '2f 3f 3f'
-        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+        super().__init__(app, 'objects/cat/20430_Cat_v1_NEW.obj')
 
-    def get_vertex_data(self):
-        objs = pywavefront.Wavefront('objects/venus/12328_Statue_v1_L2.obj', cache=True, parse=True) # Location of the .obj
-        obj = objs.materials.popitem()[1]
-        vertex_data = obj.vertices
-        vertex_data = np.array(vertex_data, dtype='f4')
-        return vertex_data
+class VenusVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/venus/12328_Statue_v1_L2.obj')
+
 # OBJECTS VBO END -------------------------------------------

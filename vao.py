@@ -28,14 +28,12 @@ class VAO:
         # Surfaces vao END --------------------------------
 
         # objects vao --------------------------------
-        self.vaos['cat'] = self.get_vao(
-            program=self.program.programs['default'],
-            vbo = self.vbo.vbos['cat']
-        )
-        self.vaos['venus'] = self.get_vao(
-            program=self.program.programs['default'],
-            vbo = self.vbo.vbos['venus']
-        )
+        from config import objects
+        for obj_name in objects:
+            self.vaos[obj_name] = self.get_vao(
+                program=self.program.programs['default'],
+                vbo=self.vbo.vbos[obj_name]
+            )
         # objects vao END --------------------------------
 
     def get_vao(self, program, vbo):
