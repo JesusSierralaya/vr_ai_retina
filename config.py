@@ -12,16 +12,4 @@ rotation = (0, 90, 0) # y = 90 change the light
 scale = (2, 10, 2)
 
 # objects
-objects = (
-    'cat',
-    'david',
-    'dolphin',
-    'duck',
-    'fish',
-    'frog',
-    'monkey',
-    'slrcamera',
-    'snake',
-    'turtle',
-    'venus',
-)
+objects = ('cat', 'david', 'dolphin', 'duck', 'fish', 'frog', 'monkey', 'slrcamera', 'snake', 'turtle', 'venus')
