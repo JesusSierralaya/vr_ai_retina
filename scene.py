@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from model import *
-from config import stereo_view, floor, objects_sample, origin_cross
+from config import *
 
 class Scene:
     def __init__(self, app):
@@ -18,9 +18,9 @@ class Scene:
 
         # Reference cube
         if origin_cross:
-            add(Cube(app, tex_id=3, scale=(.1, 2, .1)))
-            add(Cube(app, tex_id=3, scale=(2, .1, .1)))
-            add(Cube(app, tex_id=3, scale=(.1, .1, 2)))
+            add(Cube(app, tex_id='red', scale=(long_axis, .1, .1)))
+            add(Cube(app, tex_id='green', scale=(.1, long_axis, .1)))
+            add(Cube(app, tex_id='blue', scale=(.1, .1, long_axis)))
 
         # floor
         if floor:
