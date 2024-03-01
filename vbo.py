@@ -5,6 +5,8 @@ import moderngl as mgl
 import pywavefront
 import pandas as pd
 
+objects = ('cat', 'david', 'dolphin', 'duck', 'fish', 'frog', 'monkey', 'slrcamera', 'snake', 'turtle', 'venus')
+
 class VBO:
     def __init__(self, ctx):
         self.vbos = {}
@@ -17,7 +19,7 @@ class VBO:
                 self.vbos[surface_key] = SurfaceVBO(ctx, i)
         # Dictionary surfaces END ------------------------
         # Dictionary objects ------------------------
-        from config import objects
+        # from config import objects
         for obj_name in objects:
             self.vbos[obj_name] = globals()[f"{obj_name.capitalize()}VBO"](ctx)
         # self.vbos['cat'] = CatVBO(ctx)

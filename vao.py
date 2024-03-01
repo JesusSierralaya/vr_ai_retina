@@ -28,7 +28,7 @@ class VAO:
         # Surfaces vao END --------------------------------
 
         # objects vao --------------------------------
-        from config import objects
+        from vbo import objects
         for obj_name in objects:
             self.vaos[obj_name] = self.get_vao(
                 program=self.program.programs['default'],
