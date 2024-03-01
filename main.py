@@ -8,7 +8,7 @@ from mesh import Mesh
 from scene import Scene
 # stereo
 import os
-from config import stereo_view
+from config import stereo_view, cam_separation
 
 # origin window position on screen
 WIN_INIT = '10, 10'
@@ -44,7 +44,7 @@ class GraphicsEngine:
         self.light = Light()
         # Camera
         if stereo_view:
-            self.camera = Camera(self, cam_separation=5)
+            self.camera = Camera(self, cam_separation=cam_separation)
         else:
             self.camera = Camera(self)
         # mesh

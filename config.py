@@ -23,3 +23,4 @@ floor = True
 
 # stereo
 stereo_view = True
+cam_separation = 0
