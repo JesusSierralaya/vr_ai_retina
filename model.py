@@ -28,8 +28,8 @@ class BaseModel:
         m_model = glm.scale(m_model, self.scale)
         return m_model
 
-    def render(self):
-        self.update()
+    def render(self, left):
+        self.update(left)
         self.vao.render()
 
 
@@ -38,10 +38,13 @@ class Cube(BaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
-    def update(self):
+    def update(self, left):
         self.texture.use()
+        # self.program['camPos'].write(self.camera.position)
+        # self.program['m_view'].write(self.camera.m_view)
+        # self.program['m_model'].write(self.m_model)
         self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_view'].write(self.camera.get_view_matrix(left))
         self.program['m_model'].write(self.m_model)
 
     def on_init(self):
@@ -66,10 +69,13 @@ class BaseSurface(BaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
-    def update(self):
+    def update(self, left):
         self.texture.use()
+        # self.program['camPos'].write(self.camera.position)
+        # self.program['m_view'].write(self.camera.m_view)
+        # self.program['m_model'].write(self.m_model)
         self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_view'].write(self.camera.get_view_matrix(left))
         self.program['m_model'].write(self.m_model)
 
     def on_init(self):
@@ -110,10 +116,13 @@ class BaseObjectModel(BaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
-    def update(self):
+    def update(self, left):
         self.texture.use()
+        # self.program['camPos'].write(self.camera.position)
+        # self.program['m_view'].write(self.camera.m_view)
+        # self.program['m_model'].write(self.m_model)
         self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_view'].write(self.camera.get_view_matrix(left))
         self.program['m_model'].write(self.m_model)
 
     def on_init(self):

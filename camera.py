@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+"""
+This module is the main entry point of the stereoscopic 3D graphics engine.
+It handles initialization of the graphics engine and starts the main event loop.
+"""
+
 import glm
 import pygame as pg
 
@@ -8,7 +15,7 @@ SPEED = 0.01
 SENSITIVITY = 0.05
 
 class Camera:
-    def __init__(self, app, position=(0, 4, 4), yaw=-90, pitch=0):
+    def __init__(self, app, position=(0, 4, 4), yaw=-90, pitch=0, cam_separation = 0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
@@ -17,8 +24,10 @@ class Camera:
         self.forward = glm.vec3(0, 0, -1)
         self.yaw = yaw
         self.pitch = pitch
+        # Stereo ---------------
+        self.cam_separation = cam_separation
         # view matrix
-        self.m_view = self.get_view_matrix()
+        self.m_view = self.get_view_matrix(True) # default to left cam
         # projection matrix
         self.m_proj = self.get_projection_matrix()
 
@@ -43,7 +52,7 @@ class Camera:
         self.move()
         self.rotate()
         self.update_camera_vectors()
-        self.m_view = self.get_view_matrix()
+        # self.m_view = self.get_view_matrix()
 
     def move(self):
         velocity = SPEED * self.app.delta_time
@@ -61,8 +70,11 @@ class Camera:
         if keys[pg.K_e]:
             self.position -= self.up * velocity
 
-    def get_view_matrix(self):
-        return glm.lookAt(self.position, self.position + self.forward, self.up)
+    def get_view_matrix(self, left):
+        cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
+        cam_position = self.position + self.right * cam_offset
+        # return glm.lookAt(self.position, self.position + self.forward, self.up)
+        return glm.lookAt(cam_position, cam_position + self.forward, self.up)
 
     def get_projection_matrix(self):
         return glm.perspective(glm.radians(FOV), self.aspect_ratio, NEAR, FAR)

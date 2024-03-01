@@ -56,6 +56,10 @@ class Scene:
         # Surfaces END -------------------------------------------
 
 
-    def render(self):
+    # def render(self):
+    #     for obj in self.objects:
+    #         obj.render()
+
+    def render(self, left):
         for obj in self.objects:
-            obj.render()
+            obj.render(left)

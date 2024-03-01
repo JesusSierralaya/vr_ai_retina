@@ -6,19 +6,28 @@ from camera import Camera
 from light import Light
 from mesh import Mesh
 from scene import Scene
+# stereo
+import os
+
+# origin window position on screen
+WIN_INIT = '10, 10'
+WIN_SIZE = (1600, 900)
+
+# os.environ['SDL_VIDEO_WINDOW_POS'] = CONFIG["window"]["(10, 10)"]
+os.environ['SDL_VIDEO_WINDOW_POS'] = WIN_INIT
 
 class GraphicsEngine:
-    def __init__(self, win_size=(1600, 900)):
+    def __init__(self, win_size=(WIN_SIZE)):
         # init pygame modules
         pg.init()
         # window size
         self.WIN_SIZE = win_size
-        # set opengl attr
+        # set opengl attr (version)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION,3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION,3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
         # create opengl context
-        pg.display.set_mode(self.WIN_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF)
+        pg.display.set_mode(self.WIN_SIZE, flags=pg.OPENGL | pg.DOUBLEBUF | pg.NOFRAME)
         # mouse settings
         pg.event.set_grab(True)
         pg.mouse.set_visible(False)
@@ -33,7 +42,7 @@ class GraphicsEngine:
         # light
         self.light = Light()
         # Camera
-        self.camera = Camera(self)
+        self.camera = Camera(self, cam_separation=5)
         # mesh
         self.mesh = Mesh(self)
         # scene
@@ -49,8 +58,11 @@ class GraphicsEngine:
     def render(self):
         # clear framebuffer
         self.ctx.clear(color=(0.08, 0.16, 0.18))
-        # render scene
-        self.scene.render()
+        # Stereo render
+        self.ctx.viewport = (10, 10, 500, 500)
+        self.scene.render(left=True)
+        self.ctx.viewport = (810, 10, 500, 500)
+        self.scene.render(left=False)
         # swap buffers
         pg.display.flip()
 
