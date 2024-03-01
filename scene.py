@@ -27,10 +27,22 @@ class Scene:
                 add(Cube(app, pos=(x, -s +1, z)))
 
         # add objects
-        add(Cat(app, pos=(0, 0, -10)))
-        add(Venus(app, pos=(10, 0, -10)))
-        add(David(app, pos=(-10, 0, -10)))
+        dist = 20
+        add(Slrcamera(app, pos=(-dist, 0, -dist), rot=(-90, 0, 45)))
+        add(Venus(app, pos=(0, 0, -dist)))
+        add(David(app, pos=(dist, 0, -dist), rot=(-90, 0, -50)))
 
+        add(Duck(app, pos=(dist, 0, 0), rot=(-90, 0, -90)))
+
+        add(Snake(app, pos=(dist, 0, dist), rot=(-90, 0, 90)))
+        add(Frog(app, pos=(0, 0, dist), rot=(-90, 0, 180)))
+        add(Monkey(app, pos=(-dist, 0, dist), rot=(-90, 0, 135)))
+
+        add(Cat(app, pos=(-dist, 0, 0), rot=(-90, 0, 90)))
+
+        add(Fish(app, pos=(0, dist*2, dist*2)))
+        add(Dolphin(app, pos=(dist*2, dist*2, 0)))
+        add(Turtle(app, pos=(-dist*2, dist*2, 0)))
         # Surfaces -------------------------------------------
         from config import surface_from, surface_to
         if surface_from > 0 and surface_to > 0:

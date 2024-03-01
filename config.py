@@ -14,6 +14,14 @@ scale = (2, 10, 2)
 # objects
 objects = (
     'cat',
-    'venus',
     'david',
+    'dolphin',
+    'duck',
+    'fish',
+    'frog',
+    'monkey',
+    'slrcamera',
+    'snake',
+    'turtle',
+    'venus',
 )

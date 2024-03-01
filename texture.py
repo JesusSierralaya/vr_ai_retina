@@ -14,8 +14,16 @@ class Texture:
 
         # object textures ------------------------------------------
         self.textures['cat'] = self.get_texture(path='objects/cat/20430_cat_diff_v1.jpg')
-        self.textures['venus'] = self.get_texture(path='objects/venus/statue.jpg')
         self.textures['david'] = self.get_texture(path='objects/david/DavidFixedDiff.jpg')
+        self.textures['dolphin'] = self.get_texture(path='objects/dolphin/10014_dolphin_v1_Diffuse.jpg')
+        self.textures['duck'] = self.get_texture(path='objects/duck/12248_Bird_v1_diff.jpg')
+        self.textures['fish'] = self.get_texture(path='objects/fish/13001_Ryukin_Goldfish_diff.jpg')
+        self.textures['frog'] = self.get_texture(path='objects/frog/12268_banjofrog_diffuse.jpg')
+        self.textures['monkey'] = self.get_texture(path='objects/monkey/12958_Spider_Monkey_diff.jpg')
+        self.textures['slrcamera'] = self.get_texture(path='objects/slrcamera/10124_SLR_Camera_V1_Diffuse.jpg')
+        self.textures['snake'] = self.get_texture(path='objects/snake/10050_RattleSnake_v04.jpg')
+        self.textures['turtle'] = self.get_texture(path='objects/turtle/10042_Sea_Turtle_V1_Diffuse.jpg')
+        self.textures['venus'] = self.get_texture(path='objects/venus/statue.jpg')
         # object textures END ------------------------------------------
 
     def get_texture(self, path):

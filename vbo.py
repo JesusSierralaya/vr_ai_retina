@@ -179,12 +179,44 @@ class CatVBO(BaseObjectVBO):
     def __init__(self, app):
         super().__init__(app, 'objects/cat/20430_Cat_v1_NEW.obj')
 
-class VenusVBO(BaseObjectVBO):
-    def __init__(self, app):
-        super().__init__(app, 'objects/venus/12328_Statue_v1_L2.obj')
-
 class DavidVBO(BaseObjectVBO):
     def __init__(self, app):
         super().__init__(app, 'objects/david/12330_Statue_v1_L2.obj')
+
+class DolphinVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/dolphin/10014_dolphin_v2_max2011_it2.obj')
+
+class DuckVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/duck/12248_Bird_v1_L2.obj')
+
+class FishVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/fish/13001_Ryukin_Goldfish_v1_L3.obj')
+
+class FrogVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/frog/12268_banjofrog_v1_L3.obj')
+
+class MonkeyVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/monkey/12958_Spider_Monkey_v1_l2.obj')
+
+class SlrcameraVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/slrcamera/10124_SLR_Camera_SG_V1_Iteration2.obj')
+
+class SnakeVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/snake/10050_RattleSnake_v4_L3.obj')
+
+class TurtleVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/turtle/10042_Sea_Turtle_V2_iterations-2.obj')
+
+class VenusVBO(BaseObjectVBO):
+    def __init__(self, app):
+        super().__init__(app, 'objects/venus/12328_Statue_v1_L2.obj')
 
 # OBJECTS VBO END -------------------------------------------

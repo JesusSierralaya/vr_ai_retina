@@ -132,15 +132,47 @@ class BaseObjectModel(BaseModel):
         self.program['light.Is'].write(self.app.light.Is)
 
 class Cat(BaseObjectModel):
-    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.4, .4, .4)):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.5, .5, .5)):
         super().__init__(app, vao_name='cat', tex_id='cat', pos=pos, rot=rot, scale=scale)
-
-class Venus(BaseObjectModel):
-    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.05, .05, .05)):
-        super().__init__(app, vao_name='venus', tex_id='venus', pos=pos, rot=rot, scale=scale)
 
 class David(BaseObjectModel):
     def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.02, .02, .02)):
         super().__init__(app, vao_name='david', tex_id='david', pos=pos, rot=rot, scale=scale)
+
+class Dolphin(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.3, .3, .3)):
+        super().__init__(app, vao_name='dolphin', tex_id='dolphin', pos=pos, rot=rot, scale=scale)
+
+class Duck(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.15, .15, .15)):
+        super().__init__(app, vao_name='duck', tex_id='duck', pos=pos, rot=rot, scale=scale)
+
+class Fish(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(1.5, 1.5, 1.5)):
+        super().__init__(app, vao_name='fish', tex_id='fish', pos=pos, rot=rot, scale=scale)
+
+class Frog(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(1.4, 1.4, 1.4)):
+        super().__init__(app, vao_name='frog', tex_id='frog', pos=pos, rot=rot, scale=scale)
+
+class Monkey(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.15, .15, .15)):
+        super().__init__(app, vao_name='monkey', tex_id='monkey', pos=pos, rot=rot, scale=scale)
+
+class Slrcamera(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.05, .05, .05)):
+        super().__init__(app, vao_name='slrcamera', tex_id='slrcamera', pos=pos, rot=rot, scale=scale)
+
+class Snake(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.4, .4, .4)):
+        super().__init__(app, vao_name='snake', tex_id='snake', pos=pos, rot=rot, scale=scale)
+
+class Turtle(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.4, .4, .4)):
+        super().__init__(app, vao_name='turtle', tex_id='turtle', pos=pos, rot=rot, scale=scale)
+
+class Venus(BaseObjectModel):
+    def __init__(self, app, pos, rot=(-90, 0, 0), scale=(.05, .05, .05)):
+        super().__init__(app, vao_name='venus', tex_id='venus', pos=pos, rot=rot, scale=scale)
 
 # Object models END ------------------------------------------------------
