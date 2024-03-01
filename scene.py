@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from model import *
+from config import stereo_view
 
 class Scene:
     def __init__(self, app):
@@ -60,6 +61,9 @@ class Scene:
     #     for obj in self.objects:
     #         obj.render()
 
-    def render(self, left):
+    def render(self, left=False):
         for obj in self.objects:
-            obj.render(left)
+            if stereo_view:
+                obj.render(left)
+            else:
+                obj.render()

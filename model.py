@@ -1,6 +1,7 @@
 import moderngl as mgl
 import numpy as np
 import glm
+from config import stereo_view
 
 class BaseModel:
     def __init__(self, app, vao_name, tex_id, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
@@ -28,8 +29,11 @@ class BaseModel:
         m_model = glm.scale(m_model, self.scale)
         return m_model
 
-    def render(self, left):
-        self.update(left)
+    def render(self, left=False):
+        if stereo_view:
+            self.update(left)
+        else:
+            self.update()
         self.vao.render()
 
 
@@ -38,13 +42,13 @@ class Cube(BaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
-    def update(self, left):
+    def update(self, left=False):
         self.texture.use()
-        # self.program['camPos'].write(self.camera.position)
-        # self.program['m_view'].write(self.camera.m_view)
-        # self.program['m_model'].write(self.m_model)
         self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.get_view_matrix(left))
+        if stereo_view:
+            self.program['m_view'].write(self.camera.get_view_matrix(left))
+        else:
+            self.program['m_view'].write(self.camera.m_view)
         self.program['m_model'].write(self.m_model)
 
     def on_init(self):
@@ -69,13 +73,13 @@ class BaseSurface(BaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
-    def update(self, left):
+    def update(self, left=False):
         self.texture.use()
-        # self.program['camPos'].write(self.camera.position)
-        # self.program['m_view'].write(self.camera.m_view)
-        # self.program['m_model'].write(self.m_model)
         self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.get_view_matrix(left))
+        if stereo_view:
+            self.program['m_view'].write(self.camera.get_view_matrix(left))
+        else:
+            self.program['m_view'].write(self.camera.m_view)
         self.program['m_model'].write(self.m_model)
 
     def on_init(self):
@@ -116,13 +120,16 @@ class BaseObjectModel(BaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
         self.on_init()
 
-    def update(self, left):
+    def update(self, left=False):
         self.texture.use()
         # self.program['camPos'].write(self.camera.position)
         # self.program['m_view'].write(self.camera.m_view)
         # self.program['m_model'].write(self.m_model)
         self.program['camPos'].write(self.camera.position)
-        self.program['m_view'].write(self.camera.get_view_matrix(left))
+        if stereo_view:
+            self.program['m_view'].write(self.camera.get_view_matrix(left))
+        else:
+            self.program['m_view'].write(self.camera.m_view)
         self.program['m_model'].write(self.m_model)
 
     def on_init(self):

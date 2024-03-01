@@ -13,3 +13,6 @@ scale = (2, 10, 2)
 
 # objects
 objects = ('cat', 'david', 'dolphin', 'duck', 'fish', 'frog', 'monkey', 'slrcamera', 'snake', 'turtle', 'venus')
+
+# stereo
+stereo_view = False

@@ -8,6 +8,7 @@ from mesh import Mesh
 from scene import Scene
 # stereo
 import os
+from config import stereo_view
 
 # origin window position on screen
 WIN_INIT = '10, 10'
@@ -42,7 +43,10 @@ class GraphicsEngine:
         # light
         self.light = Light()
         # Camera
-        self.camera = Camera(self, cam_separation=5)
+        if stereo_view:
+            self.camera = Camera(self, cam_separation=5)
+        else:
+            self.camera = Camera(self)
         # mesh
         self.mesh = Mesh(self)
         # scene
@@ -59,10 +63,13 @@ class GraphicsEngine:
         # clear framebuffer
         self.ctx.clear(color=(0.08, 0.16, 0.18))
         # Stereo render
-        self.ctx.viewport = (10, 10, 500, 500)
-        self.scene.render(left=True)
-        self.ctx.viewport = (810, 10, 500, 500)
-        self.scene.render(left=False)
+        if stereo_view:
+            self.ctx.viewport = (10, 10, 500, 500)
+            self.scene.render(left=True)
+            self.ctx.viewport = (810, 10, 500, 500)
+            self.scene.render(left=False)
+        else:
+            self.scene.render()
         # swap buffers
         pg.display.flip()
 

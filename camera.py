@@ -7,6 +7,7 @@ It handles initialization of the graphics engine and starts the main event loop.
 
 import glm
 import pygame as pg
+from config import stereo_view
 
 FOV = 50 # deg
 NEAR = 0.1
@@ -27,7 +28,9 @@ class Camera:
         # Stereo ---------------
         self.cam_separation = cam_separation
         # view matrix
-        self.m_view = self.get_view_matrix(True) # default to left cam
+        # True for stereo view
+        # False for simple view
+        self.m_view = self.get_view_matrix(True if stereo_view else False)
         # projection matrix
         self.m_proj = self.get_projection_matrix()
 
@@ -52,7 +55,7 @@ class Camera:
         self.move()
         self.rotate()
         self.update_camera_vectors()
-        # self.m_view = self.get_view_matrix()
+        self.m_view = self.get_view_matrix(True if stereo_view else False)
 
     def move(self):
         velocity = SPEED * self.app.delta_time
@@ -70,11 +73,13 @@ class Camera:
         if keys[pg.K_e]:
             self.position -= self.up * velocity
 
-    def get_view_matrix(self, left):
-        cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
-        cam_position = self.position + self.right * cam_offset
-        # return glm.lookAt(self.position, self.position + self.forward, self.up)
-        return glm.lookAt(cam_position, cam_position + self.forward, self.up)
+    def get_view_matrix(self, left=True):
+        if not stereo_view:
+            return glm.lookAt(self.position, self.position + self.forward, self.up)
+        else:
+            cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
+            cam_position = self.position + self.right * cam_offset
+            return glm.lookAt(cam_position, cam_position + self.forward, self.up)
 
     def get_projection_matrix(self):
         return glm.perspective(glm.radians(FOV), self.aspect_ratio, NEAR, FAR)
