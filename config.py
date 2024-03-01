@@ -13,7 +13,7 @@ scale = (2, 10, 2)
 
 # origin
 origin_cross = True
-long_axis = 1
+long_axis = 100
 
 # objects
 objects_sample = True
@@ -23,4 +23,4 @@ floor = True
 
 # stereo
 stereo_view = True
-cam_separation = 0
+cam_separation = 5

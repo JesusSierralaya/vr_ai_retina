@@ -12,7 +12,13 @@ from config import stereo_view, cam_separation
 
 # origin window position on screen
 WIN_INIT = '10, 10'
-WIN_SIZE = (1600, 900)
+WIN_SIZE = (2000, 1000)
+# left viewport
+LEFT_VIEWPORT_INIT = (10, 10)
+# right viewport
+RIGHT_VIEWPORT_INIT = (810, 10)
+# viewport size
+VIEWPORT_SIZE = (500, 500)
 
 # os.environ['SDL_VIDEO_WINDOW_POS'] = CONFIG["window"]["(10, 10)"]
 os.environ['SDL_VIDEO_WINDOW_POS'] = WIN_INIT
@@ -64,9 +70,11 @@ class GraphicsEngine:
         self.ctx.clear(color=(0.08, 0.16, 0.18))
         # Stereo render
         if stereo_view:
-            self.ctx.viewport = (10, 10, 500, 500)
+            self.ctx.viewport = (LEFT_VIEWPORT_INIT + VIEWPORT_SIZE)
+            # self.ctx.viewport = (10, 10, 500, 500)
             self.scene.render(left=True)
-            self.ctx.viewport = (810, 10, 500, 500)
+            self.ctx.viewport = (RIGHT_VIEWPORT_INIT + VIEWPORT_SIZE)
+            # self.ctx.viewport = (810, 10, 500, 500)
             self.scene.render(left=False)
         else:
             self.scene.render()
