@@ -40,8 +40,8 @@ class Scene:
 
         add(Cat(app, pos=(-dist, 0, 0), rot=(-90, 0, 90)))
 
-        add(Fish(app, pos=(0, dist*2, dist*2)))
-        add(Dolphin(app, pos=(dist*2, dist*2, 0)))
+        add(Fish(app, pos=(0, dist*2, dist*2), rot=(-90, 0, 90)))
+        add(Dolphin(app, pos=(dist*2, dist*2, 0), rot=(-90, 0, 0)))
         add(Turtle(app, pos=(-dist*2, dist*2, 0)))
         # Surfaces -------------------------------------------
         from config import surface_from, surface_to
