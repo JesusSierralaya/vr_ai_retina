@@ -24,3 +24,9 @@ floor = True
 # stereo
 stereo_view = True
 cam_separation = .5
+
+# cam change at x seconds
+cam_toggle = True
+toggle_interval= 1 # seconds
+cam_separation_1 = 0.5
+cam_separation_2 = 2.5

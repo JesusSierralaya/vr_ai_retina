@@ -8,7 +8,7 @@ from mesh import Mesh
 from scene import Scene
 # stereo
 import os
-from config import stereo_view, cam_separation
+from config import *
 
 # origin window position on screen
 WIN_INIT = '10, 10'
@@ -57,6 +57,10 @@ class GraphicsEngine:
         self.mesh = Mesh(self)
         # scene
         self.scene = Scene(self)
+        # toggle distance cam
+        self.toggle_interval = toggle_interval  # seconds
+        self.last_toggle_time = 0  # tracks the last toggle time
+
 
     def check_events(self):
         for event in pg.event.get():
@@ -86,9 +90,18 @@ class GraphicsEngine:
 
     def run(self):
         while True:
+            current_time = pg.time.get_ticks() * 0.001 # get current time in seconds
             self.get_time()
             self.check_events()
             self.camera.update()
+            if cam_toggle:
+                # Check if it's time to toggle cam_separation
+                if current_time - self.last_toggle_time > self.toggle_interval: # Toggle cam_separation
+                    new_cam_separation = cam_separation_2 if self.camera.cam_separation == cam_separation_1 else cam_separation_1
+                    self.camera.cam_separation = new_cam_separation
+                    # Reset last toggle time
+                    self.last_toggle_time = current_time
+
             self.render()
             self.delta_time = self.clock.tick(60)
 
