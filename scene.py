@@ -29,11 +29,17 @@ class Scene:
                 for z in range(-n, n, s):
                     add(Cube(app, pos=(x, -s +1, z)))
 
+        # add cube
+        add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red'))
+        # add line reference
+        if fix_camera and draw_lines:
+            add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 0.01, 100)))
+            add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 100, 0.01)))
+            add(Cube(app, tex_id='white', pos=camera_position, scale=(100, 0.01, 0.01)))
         # add objects
         if objects_sample:
-            dist = 20
-            add(Slrcamera(app, pos=(-dist, 0, -dist), rot=(-90, 0, 45)))
-            add(Venus(app, pos=(0, 0, -dist)))
+            dist = 30
+            add(Venus(app, pos=(-dist, 0, -dist)))
             add(David(app, pos=(dist, 0, -dist), rot=(-90, 0, -50)))
 
             add(Duck(app, pos=(dist, 0, 0), rot=(-90, 0, -90)))
@@ -42,7 +48,7 @@ class Scene:
             add(Frog(app, pos=(0, 0, dist), rot=(-90, 0, 180)))
             add(Monkey(app, pos=(-dist, 0, dist), rot=(-90, 0, 135)))
 
-            add(Cat(app, pos=(-dist, 0, 0), rot=(-90, 0, 90)))
+            add(Slrcamera(app, pos=(-dist, 0, 0), rot=(-90, 0, 90)))
 
             add(Fish(app, pos=(0, dist*2, dist*2), rot=(-90, 0, 90)))
             add(Dolphin(app, pos=(dist*2, dist*2, 0), rot=(-90, 0, 0)))

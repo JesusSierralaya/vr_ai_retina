@@ -22,7 +22,7 @@ objects_sample = True
 floor = True
 
 # stereo
-stereo_view = True
+stereo_view = False
 cam_separation = .5
 
 # cam change at x seconds
@@ -34,4 +34,5 @@ cam_separation_2 = 5
 # Camera position fix (no calibrated for movement)
 fix_camera = True # Only for stereo_view = True
 camera_position = (0, 5, 5)
+draw_lines = True
 forward = (0, 5, -15)
