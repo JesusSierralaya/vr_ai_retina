@@ -10,7 +10,8 @@ class Texture:
         self.textures[0] = self.get_texture(path='textures/img.png')
         self.textures[1] = self.get_texture(path='textures/img_1.png')
         self.textures[2] = self.get_texture(path='textures/img_2.png')
-        self.textures[3] = self.get_texture(path='textures/test.png')
+        self.textures['test'] = self.get_texture(path='textures/test.png')
+        self.textures['tile'] = self.get_texture(path='textures/tile.jpg')
 
         # colors
         self.textures['red'] = self.get_texture(path='textures/red.png')

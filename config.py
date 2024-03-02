@@ -3,15 +3,13 @@
 # config.py
 
 # Define surface range # render nothing 0 0
-surface_from = 0
-surface_to = 0
+surface_from = 1
+surface_to = 1
 # parameters
 invert_y = -1 # Invert vertical axis
 position = (0, 25, -10)
-# position = (0, 5, -10)
 rotation = (0, 0, 0) # y = 90 change the light
 scale = (2, 12, 2)
-# scale = (2, 2, 2)
 
 # origin
 origin_cross = False

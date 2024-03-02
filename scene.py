@@ -27,11 +27,11 @@ class Scene:
             n, s = 40, 2
             for x in range(-n, n, s):
                 for z in range(-n, n, s):
-                    add(Cube(app, pos=(x, -s +1, z)))
+                    add(Cube(app, pos=(x, -s +1, z), tex_id='tile'))
 
         # add cube
         if cube_sample:
-            add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red')) # red_2
+            add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red')) # red_2, test
         # add line reference
         if fix_camera and draw_lines_position:
             add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 0.01, 100)))
