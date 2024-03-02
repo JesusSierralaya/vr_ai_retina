@@ -16,7 +16,7 @@ SPEED = 0.01
 SENSITIVITY = 0.05
 
 class Camera:
-    def __init__(self, app, position=(0, 4, 4), yaw=-90, pitch=0, cam_separation = 0):
+    def __init__(self, app, position=(0, 0, 0), yaw=-90, pitch=0, cam_separation = 0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
@@ -75,7 +75,9 @@ class Camera:
 
     def get_view_matrix(self, left=True):
         if not stereo_view:
-            return glm.lookAt(self.position, self.position + self.forward, self.up)
+            forward= self.position + self.forward
+            print(forward)
+            return glm.lookAt(self.position, forward, self.up)
         else:
             cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
             cam_position = self.position + self.right * cam_offset
@@ -83,3 +85,26 @@ class Camera:
 
     def get_projection_matrix(self):
         return glm.perspective(glm.radians(FOV), self.aspect_ratio, NEAR, FAR)
+
+    def print_view_matrix(self):
+        if stereo_view:  # Check if stereo view is enabled
+            print("Left Camera View Matrix:")
+            left_view_matrix = self.get_view_matrix(left=True)
+            for i in range(4):  # View matrix is 4x4
+                for j in range(4):
+                    print(f"{left_view_matrix[i][j]:6.2f}", end=" ")
+                print()
+
+            print("Right Camera View Matrix:")
+            right_view_matrix = self.get_view_matrix(left=False)
+            for i in range(4):  # View matrix is 4x4
+                for j in range(4):
+                    print(f"{right_view_matrix[i][j]:6.2f}", end=" ")
+                print()
+            print("\n")
+        else:  # If not in stereo view, print the current view matrix
+            print("View Matrix:")
+            for i in range(4):  # View matrix is 4x4
+                for j in range(4):
+                    print(f"{self.m_view[i][j]:6.2f}", end=" ")
+                print()

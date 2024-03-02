@@ -12,15 +12,16 @@ rotation = (0, 90, 0) # y = 90 change the light
 scale = (2, 10, 2)
 
 # origin
-origin_cross = True
+origin_cross = False
 long_axis = 100
 
 # objects
 objects_sample = True
 
 # floor
-floor = True
+floor = False
 
 # stereo
 stereo_view = True
+show_view_matrix = False
 cam_separation = .5

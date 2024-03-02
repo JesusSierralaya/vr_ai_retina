@@ -8,7 +8,7 @@ from mesh import Mesh
 from scene import Scene
 # stereo
 import os
-from config import stereo_view, cam_separation
+from config import stereo_view, cam_separation, show_view_matrix
 
 # origin window position on screen
 WIN_INIT = '10, 10'
@@ -57,6 +57,8 @@ class GraphicsEngine:
         self.mesh = Mesh(self)
         # scene
         self.scene = Scene(self)
+        # XXXXX
+        self.last_print_time = 0
 
     def check_events(self):
         for event in pg.event.get():
@@ -64,6 +66,9 @@ class GraphicsEngine:
                 self.mesh.destroy()
                 pg.quit()
                 sys.exit()
+            # Add your new condition here
+            if event.type == pg.KEYDOWN and event.key == pg.K_p:  # If 'P' key is pressed
+                self.camera.print_view_matrix()  # Call the method to print the view matrix
 
     def render(self):
         # clear framebuffer
@@ -91,6 +96,12 @@ class GraphicsEngine:
             self.camera.update()
             self.render()
             self.delta_time = self.clock.tick(60)
+
+            if show_view_matrix:
+                current_time = pg.time.get_ticks()
+                if current_time - self.last_print_time > 1000:  # 3000 milliseconds = 3 seconds
+                    self.camera.print_view_matrix()
+                    self.last_print_time = current_time
 
 if __name__ == '__main__':
     app = GraphicsEngine()
