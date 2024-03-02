@@ -14,11 +14,11 @@ from config import stereo_view, cam_separation
 WIN_INIT = '10, 10'
 WIN_SIZE = (2000, 1000)
 # left viewport
-LEFT_VIEWPORT_INIT = (10, 10)
+LEFT_VIEWPORT_INIT = (10, 210)
 # right viewport
-RIGHT_VIEWPORT_INIT = (810, 10)
+RIGHT_VIEWPORT_INIT = (1010, 210)
 # viewport size
-VIEWPORT_SIZE = (500, 500)
+VIEWPORT_SIZE = (950, 950/2)
 
 # os.environ['SDL_VIDEO_WINDOW_POS'] = CONFIG["window"]["(10, 10)"]
 os.environ['SDL_VIDEO_WINDOW_POS'] = WIN_INIT
