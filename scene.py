@@ -31,7 +31,7 @@ class Scene:
 
         # add cube
         if cube_sample:
-            add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red'))
+            add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red')) # red_2
         # add line reference
         if fix_camera and draw_lines_position:
             add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 0.01, 100)))
@@ -70,11 +70,6 @@ class Scene:
                 # Add the surface instance to the application
                 add(surface_instance)
         # Surfaces END -------------------------------------------
-
-
-    # def render(self):
-    #     for obj in self.objects:
-    #         obj.render()
 
     def render(self, left=False):
         for obj in self.objects:

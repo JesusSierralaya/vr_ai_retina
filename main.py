@@ -71,7 +71,8 @@ class GraphicsEngine:
 
     def render(self):
         # clear framebuffer
-        self.ctx.clear(color=(0.08, 0.16, 0.18))
+        # self.ctx.clear(color=(0.08, 0.16, 0.18))
+        self.ctx.clear(color=(0.0, 0.0, 0.0))
         # Stereo render
         if stereo_view:
             self.ctx.viewport = (LEFT_VIEWPORT_INIT + VIEWPORT_SIZE)

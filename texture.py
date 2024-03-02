@@ -14,9 +14,13 @@ class Texture:
 
         # colors
         self.textures['red'] = self.get_texture(path='textures/red.png')
+        self.textures['red_2'] = self.get_texture(path='textures/red_2.jpg')
         self.textures['green'] = self.get_texture(path='textures/green.png')
         self.textures['blue'] = self.get_texture(path='textures/blue.png')
         self.textures['white'] = self.get_texture(path='textures/white.png')
+
+        # surface textures
+        self.textures['cm'] = self.get_texture(path='textures/surface_cm.jpeg')
 
         # object textures ------------------------------------------
         self.textures['cat'] = self.get_texture(path='objects/cat/20430_cat_diff_v1.jpg')

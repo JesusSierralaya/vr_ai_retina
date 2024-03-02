@@ -7,34 +7,36 @@ surface_from = 0
 surface_to = 0
 # parameters
 invert_y = -1 # Invert vertical axis
-position = (0, 15, -5)
-rotation = (0, 90, 0) # y = 90 change the light
-scale = (2, 10, 2)
+position = (0, 25, -10)
+# position = (0, 5, -10)
+rotation = (0, 0, 0) # y = 90 change the light
+scale = (2, 12, 2)
+# scale = (2, 2, 2)
 
 # origin
-origin_cross = True
-long_axis = 100
-
-# objects
-objects_sample = True
-cube_sample = True
+origin_cross = False
+long_axis = 1
 
 # floor
 floor = True
+
+# objects
+cube_sample = False
+objects_sample = False
 
 # stereo
 stereo_view = False
 cam_separation = .5
 
+# Camera position fix (no calibrated for movement)
+fix_camera = False # Only for stereo_view = True
+camera_position = (0, 5, 5)
+draw_lines_position = False
+draw_line_forward = False
+forward = (0, 5, -15)
+
 # cam change at x seconds
-cam_toggle = True
+cam_toggle = False
 toggle_interval= 1 # seconds
 cam_separation_1 = 0.5
 cam_separation_2 = 5
-
-# Camera position fix (no calibrated for movement)
-fix_camera = True # Only for stereo_view = True
-camera_position = (0, 5, 5)
-draw_lines_position = True
-draw_line_forward = True
-forward = (0, 5, -15)
