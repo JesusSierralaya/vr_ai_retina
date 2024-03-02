@@ -30,12 +30,17 @@ class Scene:
                     add(Cube(app, pos=(x, -s +1, z)))
 
         # add cube
-        add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red'))
+        if cube_sample:
+            add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red'))
         # add line reference
-        if fix_camera and draw_lines:
+        if fix_camera and draw_lines_position:
             add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 0.01, 100)))
             add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 100, 0.01)))
             add(Cube(app, tex_id='white', pos=camera_position, scale=(100, 0.01, 0.01)))
+        # add line forward
+        if fix_camera and draw_line_forward:
+            add(Cube(app, tex_id='white', pos=forward, scale=(0.01, 100, 0.01)))
+
         # add objects
         if objects_sample:
             dist = 30

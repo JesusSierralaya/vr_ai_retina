@@ -17,6 +17,7 @@ long_axis = 100
 
 # objects
 objects_sample = True
+cube_sample = True
 
 # floor
 floor = True
@@ -34,5 +35,6 @@ cam_separation_2 = 5
 # Camera position fix (no calibrated for movement)
 fix_camera = True # Only for stereo_view = True
 camera_position = (0, 5, 5)
-draw_lines = True
+draw_lines_position = True
+draw_line_forward = True
 forward = (0, 5, -15)
