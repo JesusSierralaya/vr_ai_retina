@@ -7,7 +7,7 @@ It handles initialization of the graphics engine and starts the main event loop.
 
 import glm
 import pygame as pg
-from config import stereo_view
+from config import stereo_view, fix_camera
 
 FOV = 50 # deg
 NEAR = 0.1
@@ -16,7 +16,7 @@ SPEED = 0.01
 SENSITIVITY = 0.05
 
 class Camera:
-    def __init__(self, app, position=(0, 4, 4), yaw=-90, pitch=0, cam_separation = 0):
+    def __init__(self, app, position= (0, 5, 5), yaw=-90, pitch=0, cam_separation = 0):
         self.app = app
         self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
         self.position = glm.vec3(position)
@@ -77,9 +77,16 @@ class Camera:
         if not stereo_view:
             return glm.lookAt(self.position, self.position + self.forward, self.up)
         else:
-            cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
-            cam_position = self.position + self.right * cam_offset
-            return glm.lookAt(cam_position, cam_position + self.forward, self.up)
+            if fix_camera:
+                from config import forward, camera_position
+                cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
+                cam_position = camera_position + self.right * cam_offset
+                # print(cam_position)
+                return glm.lookAt(cam_position, forward, self.up)
+            else:
+                cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
+                cam_position = self.position + self.right * cam_offset
+                return glm.lookAt(cam_position, cam_position + self.forward, self.up)
 
     def get_projection_matrix(self):
         return glm.perspective(glm.radians(FOV), self.aspect_ratio, NEAR, FAR)
