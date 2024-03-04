@@ -29,17 +29,22 @@ class Scene:
                 for z in range(-n, n, s):
                     add(Cube(app, pos=(x, -s +1, z), tex_id='tile'))
 
+        # add(Cube(app, pos=(0, 5, -15), rot=(0, 0, 0), tex_id='red')) # red_2, test
         # add cube
         if cube_sample:
-            add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red')) # red_2, test
+            # add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red')) # red_2, test
+            # add(Venus(app, pos=(0, -2, -15))) # red_2, test
+            add(Duck(app, pos=(0, 0, -15))) # red_2, test
         # add line reference
-        if fix_camera and draw_lines_position:
+        # if fix_camera and draw_lines_position:
+        if draw_lines_position:
             add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 0.01, 100)))
             add(Cube(app, tex_id='white', pos=camera_position, scale=(0.01, 100, 0.01)))
             add(Cube(app, tex_id='white', pos=camera_position, scale=(100, 0.01, 0.01)))
         # add line forward
-        if fix_camera and draw_line_forward:
+        if draw_line_forward:
             add(Cube(app, tex_id='white', pos=forward, scale=(0.01, 100, 0.01)))
+            add(Cube(app, tex_id='white', pos=forward, scale=(100, 0.01, 0.01)))
 
         # add objects
         if objects_sample:
