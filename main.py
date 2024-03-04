@@ -11,14 +11,14 @@ import os
 from config import *
 
 # origin window position on screen
-WIN_INIT = '10, 10'
-WIN_SIZE = (2000, 1000)
+WIN_INIT = '0, 0'
+WIN_SIZE = (3839*2, 2160)
 # left viewport
-LEFT_VIEWPORT_INIT = (10, 210)
+LEFT_VIEWPORT_INIT = (0, 6)
 # right viewport
-RIGHT_VIEWPORT_INIT = (1010, 210)
+RIGHT_VIEWPORT_INIT = (4230, 7)
 # viewport size
-VIEWPORT_SIZE = (950, 950/2)
+VIEWPORT_SIZE = (3425, 2130)
 
 # os.environ['SDL_VIDEO_WINDOW_POS'] = CONFIG["window"]["(10, 10)"]
 os.environ['SDL_VIDEO_WINDOW_POS'] = WIN_INIT
