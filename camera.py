@@ -16,14 +16,18 @@ SPEED = 0.01
 SENSITIVITY = 0.05
 
 class Camera:
-    def __init__(self, app, position= (0, 5, 5), yaw=-90, pitch=0, cam_separation = 0):
+    # yaw = 90 to turn around becuase the yaw will change
+    def __init__(self, app, position= (0, 5, 5), yaw=90, pitch=0, cam_separation = 0):
         self.app = app
-        self.aspect_ratio = app.WIN_SIZE[0] / app.WIN_SIZE[1]
+        # Change the aspect ratio to take in account the size of the viewport instead of the window
+        from main import VIEWPORT_SIZE
+        self.aspect_ratio = VIEWPORT_SIZE[0] / VIEWPORT_SIZE[1]
         self.position = glm.vec3(position)
         self.up = glm.vec3(0, 1, 0)
         self.right = glm.vec3(1, 0, 0)
         self.forward = glm.vec3(0, 0, -1)
-        self.yaw = yaw
+        # Negative yaw becuase change due to the mirror view on the stereoscope
+        self.yaw = -yaw
         self.pitch = pitch
         # Stereo ---------------
         self.cam_separation = cam_separation
@@ -64,9 +68,11 @@ class Camera:
             self.position += self.forward * velocity
         if keys[pg.K_s]:
             self.position -= self.forward * velocity
-        if keys[pg.K_a]:
-            self.position -= self.right * velocity
+        # if keys[pg.K_a]:
         if keys[pg.K_d]:
+            self.position -= self.right * velocity
+        # if keys[pg.K_d]:
+        if keys[pg.K_a]:
             self.position += self.right * velocity
         if keys[pg.K_q]:
             self.position += self.up * velocity
@@ -81,7 +87,7 @@ class Camera:
                 from config import forward, camera_position
                 cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
                 cam_position = camera_position + self.right * cam_offset
-                # print(cam_position)
+                # print(cam_position, forward)
                 return glm.lookAt(cam_position, forward, self.up)
             else:
                 cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
