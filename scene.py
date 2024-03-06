@@ -16,19 +16,20 @@ class Scene:
         app = self.app
         add = self.add_object
 
+        # Object reference to test the fenomemon
+        if object_ref:
+            # add(Cube(app, tex_id='red', scale=(long_axis, .1, .1), pos=(0, 4, 2), rot=(20,40,0)))
+            # add(Cube(app, tex_id='green', scale=(.1, long_axis, .1),pos=(0,4,2), rot=(20,40,0)))
+            # add(Cube(app, tex_id='red', scale=(.1, .1, long_axis),pos=(0,4,2), rot=(0,0,0)))
+            # add(Duck(app, pos=(0, 3,0), scale=(.06,.06,.06), rot=(-90, 0,30)))
+            add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(-90, 0, -60)))
+
+
         # Reference cube
         if origin_cross:
             add(Cube(app, tex_id='red', scale=(long_axis, .1, .1)))
             add(Cube(app, tex_id='green', scale=(.1, long_axis, .1)))
             add(Cube(app, tex_id='blue', scale=(.1, .1, long_axis)))
-
-        # Object reference to test the fenomemon
-        if object_ref:
-            add(Cube(app, tex_id='red', scale=(long_axis, .1, .1), pos=(0, 4, 2), rot=(20,40,0)))
-            # add(Cube(app, tex_id='green', scale=(.1, long_axis, .1),pos=(0,4,2), rot=(20,40,0)))
-            # add(Cube(app, tex_id='red', scale=(.1, .1, long_axis),pos=(0,4,2), rot=(0,0,0)))
-            # add(Duck(app, pos=(0, 3,0), scale=(.06,.06,.06), rot=(-90, 0,30)))
-            # add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(-90, 0, -60)))
 
         # floor
         if floor:
@@ -63,12 +64,8 @@ class Scene:
         # add(Line(app, (-1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
 
         #
-        # lines
+        # Draw lines that indicate the camera position
         if draw_lines_cams:
-            add(Cube(app, tex_id='green', pos=(-.5, 0, 5), scale=(0.001, 100, 0.001)))
-            add(Cube(app, tex_id='green', pos=(-1, 0, 5), scale=(0.001, 100, 0.001)))
-            add(Cube(app, tex_id='green', pos=(.5, 0, 5), scale=(0.001, 100, 0.001)))
-            add(Cube(app, tex_id='green', pos=(1, 0, 5), scale=(0.001, 100, 0.001)))
             camera_position_left = list(camera_position)
             camera_position_left[0] = cam_separation_1/2
             camera_position_left = tuple(camera_position_left)
@@ -77,8 +74,10 @@ class Scene:
             camera_position_right[0] = -cam_separation_1/2
             camera_position_right = tuple(camera_position_right)
 
-            add(Line(app,camera_position_left , forward, 'blue'))  # Uses default tex_id and thickness
-            add(Line(app,camera_position_right , forward, 'blue'))  # Uses default tex_id and thickness
+            add(Line(app,camera_position_left , forward, 'blue'))
+            add(Line(app,camera_position_right , forward, 'blue'))
+            add(Cube(app, tex_id='blue', pos=camera_position_left, scale=(0.001, 100, 0.001)))
+            add(Cube(app, tex_id='blue', pos=camera_position_right, scale=(0.001, 100, 0.001)))
 
             camera_position_left = list(camera_position)
             camera_position_left[0] = cam_separation_2/2
@@ -90,8 +89,8 @@ class Scene:
 
             add(Line(app,camera_position_left , forward, 'red'))  # Uses default tex_id and thickness
             add(Line(app,camera_position_right , forward, 'red'))  # Uses default tex_id and thickness
-            # add(Line(app, (1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
-            # add(Line(app, (-1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
+            add(Cube(app, tex_id='red', pos=camera_position_left, scale=(0.001, 100, 0.001)))
+            add(Cube(app, tex_id='red', pos=camera_position_right, scale=(0.001, 100, 0.001)))
 
         # add objects
         if objects_sample:

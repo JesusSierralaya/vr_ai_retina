@@ -21,7 +21,6 @@ floor = False
 # objects
 cube_sample = False
 objects_sample = True
-
 object_ref = True
 
 # stereo
@@ -46,7 +45,7 @@ cam_separation_1 = .05
 cam_separation_2 = .1
 
 # draw lines cam separation
-draw_lines_cams = False
+draw_lines_cams = True
 test_cameras = False# fix_camera = True and cam_toggle = True
 
 back = 0
