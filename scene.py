@@ -46,9 +46,48 @@ class Scene:
             add(Cube(app, tex_id='white', pos=forward, scale=(0.01, 100, 0.01)))
             add(Cube(app, tex_id='white', pos=forward, scale=(100, 0.01, 0.01)))
 
+        # add lines
+        from line import Line
+        # add(Line(app, (0.5, 5, 5), forward, 'blue'))  # Uses default tex_id and thickness
+        # add(Line(app, (-0.5, 5, 5), forward, 'blue'))  # Uses default tex_id and thickness
+
+        # add(Line(app, (1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
+        # add(Line(app, (-1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
+
+        #
+        # lines
+        if draw_lines_cams:
+            add(Cube(app, tex_id='green', pos=(-.5, 0, 5), scale=(0.001, 100, 0.001)))
+            add(Cube(app, tex_id='green', pos=(-1, 0, 5), scale=(0.001, 100, 0.001)))
+            add(Cube(app, tex_id='green', pos=(.5, 0, 5), scale=(0.001, 100, 0.001)))
+            add(Cube(app, tex_id='green', pos=(1, 0, 5), scale=(0.001, 100, 0.001)))
+            camera_position_left = list(camera_position)
+            camera_position_left[0] = cam_separation_1/2
+            camera_position_left = tuple(camera_position_left)
+
+            camera_position_right = list(camera_position)
+            camera_position_right[0] = -cam_separation_1/2
+            camera_position_right = tuple(camera_position_right)
+
+            add(Line(app,camera_position_left , forward, 'blue'))  # Uses default tex_id and thickness
+            add(Line(app,camera_position_right , forward, 'blue'))  # Uses default tex_id and thickness
+
+            camera_position_left = list(camera_position)
+            camera_position_left[0] = cam_separation_2/2
+            camera_position_left = tuple(camera_position_left)
+
+            camera_position_right = list(camera_position)
+            camera_position_right[0] = -cam_separation_2/2
+            camera_position_right = tuple(camera_position_right)
+
+            add(Line(app,camera_position_left , forward, 'red'))  # Uses default tex_id and thickness
+            add(Line(app,camera_position_right , forward, 'red'))  # Uses default tex_id and thickness
+            # add(Line(app, (1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
+            # add(Line(app, (-1.5, 5, 5), forward, 'red'))  # Uses default tex_id and thickness
+
         # add objects
         if objects_sample:
-            dist = 30
+            dist = 20
             add(Venus(app, pos=(-dist, 0, -dist)))
             add(David(app, pos=(dist, 0, -dist), rot=(-90, 0, -50)))
 
