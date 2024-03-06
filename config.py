@@ -22,6 +22,7 @@ floor = False
 cube_sample = False
 objects_sample = True
 
+object_ref = True
 
 # stereo
 stereo_view = True

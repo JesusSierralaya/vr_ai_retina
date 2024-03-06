@@ -18,11 +18,17 @@ class Scene:
 
         # Reference cube
         if origin_cross:
-            # add(Cube(app, tex_id='red', scale=(long_axis, .1, .1), pos=(0, 4, 2), rot=(20,40,0)))
+            add(Cube(app, tex_id='red', scale=(long_axis, .1, .1)))
+            add(Cube(app, tex_id='green', scale=(.1, long_axis, .1)))
+            add(Cube(app, tex_id='blue', scale=(.1, .1, long_axis)))
+
+        # Object reference to test the fenomemon
+        if object_ref:
+            add(Cube(app, tex_id='red', scale=(long_axis, .1, .1), pos=(0, 4, 2), rot=(20,40,0)))
             # add(Cube(app, tex_id='green', scale=(.1, long_axis, .1),pos=(0,4,2), rot=(20,40,0)))
             # add(Cube(app, tex_id='red', scale=(.1, .1, long_axis),pos=(0,4,2), rot=(0,0,0)))
             # add(Duck(app, pos=(0, 3,0), scale=(.06,.06,.06), rot=(-90, 0,30)))
-            add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(-90, 0, -60)))
+            # add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(-90, 0, -60)))
 
         # floor
         if floor:
