@@ -18,9 +18,11 @@ class Scene:
 
         # Reference cube
         if origin_cross:
-            add(Cube(app, tex_id='red', scale=(long_axis, .1, .1)))
-            add(Cube(app, tex_id='green', scale=(.1, long_axis, .1)))
-            add(Cube(app, tex_id='blue', scale=(.1, .1, long_axis)))
+            # add(Cube(app, tex_id='red', scale=(long_axis, .1, .1), pos=(0, 4, 2), rot=(20,40,0)))
+            # add(Cube(app, tex_id='green', scale=(.1, long_axis, .1),pos=(0,4,2), rot=(20,40,0)))
+            # add(Cube(app, tex_id='red', scale=(.1, .1, long_axis),pos=(0,4,2), rot=(0,0,0)))
+            # add(Duck(app, pos=(0, 3,0), scale=(.06,.06,.06), rot=(-90, 0,30)))
+            add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(-90, 0, -60)))
 
         # floor
         if floor:
@@ -32,9 +34,9 @@ class Scene:
         # add(Cube(app, pos=(0, 5, -15), rot=(0, 0, 0), tex_id='red')) # red_2, test
         # add cube
         if cube_sample:
-            # add(Cube(app, pos=(0, 5, -15), rot=(45, 45, 0), tex_id='red')) # red_2, test
+            add(Cube(app, pos=(0, 5, -5), rot=(45, 45, 0), tex_id='red')) # red_2, test
             # add(Venus(app, pos=(0, -2, -15))) # red_2, test
-            add(Duck(app, pos=(0, 0, -15))) # red_2, test
+            # add(Duck(app, pos=(0, 0, -15))) # red_2, test
         # add line reference
         # if fix_camera and draw_lines_position:
         if draw_lines_position:

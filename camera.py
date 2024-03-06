@@ -7,17 +7,23 @@ It handles initialization of the graphics engine and starts the main event loop.
 
 import glm
 import pygame as pg
-from config import stereo_view, fix_camera
+from config import stereo_view, fix_camera, mirror_mode, test_cameras, back
 
 FOV = 50 # deg
 NEAR = 0.1
 FAR = 100
-SPEED = 0.01
-SENSITIVITY = 0.05
+# SPEED = 0.01
+# SENSITIVITY = 0.05
+SPEED = 0.005
+SENSITIVITY = 0.005
 
 class Camera:
     # yaw = 90 to turn around becuase the yaw will change
-    def __init__(self, app, position= (0, 5, 5), yaw=90, pitch=0, cam_separation = 0):
+    if mirror_mode:
+        yaw = 90
+    else:
+        yaw = -90
+    def __init__(self, app, position= (0, 5, 5), yaw=yaw, pitch=0, cam_separation = 0):
         self.app = app
         # Change the aspect ratio to take in account the size of the viewport instead of the window
         from main import VIEWPORT_SIZE
@@ -27,7 +33,10 @@ class Camera:
         self.right = glm.vec3(1, 0, 0)
         self.forward = glm.vec3(0, 0, -1)
         # Negative yaw becuase change due to the mirror view on the stereoscope
-        self.yaw = -yaw
+        if mirror_mode:
+            self.yaw = -yaw
+        else:
+            self.yaw = yaw
         self.pitch = pitch
         # Stereo ---------------
         self.cam_separation = cam_separation
@@ -70,10 +79,16 @@ class Camera:
             self.position -= self.forward * velocity
         # if keys[pg.K_a]:
         if keys[pg.K_d]:
-            self.position -= self.right * velocity
+            if mirror_mode:
+                self.position -= self.right * velocity
+            else:
+                self.position += self.right * velocity
         # if keys[pg.K_d]:
         if keys[pg.K_a]:
-            self.position += self.right * velocity
+            if mirror_mode:
+                self.position += self.right * velocity
+            else:
+                self.position -= self.right * velocity
         if keys[pg.K_q]:
             self.position += self.up * velocity
         if keys[pg.K_e]:
@@ -88,7 +103,11 @@ class Camera:
                 cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
                 cam_position = camera_position + self.right * cam_offset
                 # print(cam_position, forward)
-                return glm.lookAt(cam_position, forward, self.up)
+                if test_cameras:
+                    print(cam_position + back)
+                    return glm.lookAt(cam_position + back, forward, self.up)
+                else:
+                    return glm.lookAt(cam_position, forward, self.up)
             else:
                 cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
                 cam_position = self.position + self.right * cam_offset

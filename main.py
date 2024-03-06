@@ -97,7 +97,7 @@ class GraphicsEngine:
             self.camera.update()
             if cam_toggle:
                 # Check if it's time to toggle cam_separation
-                if current_time - self.last_toggle_time > self.toggle_interval: # Toggle cam_separation
+                if current_time - self.last_toggle_time > self.toggle_interval:
                     new_cam_separation = cam_separation_2 if self.camera.cam_separation == cam_separation_1 else cam_separation_1
                     self.camera.cam_separation = new_cam_separation
                     # Reset last toggle time
