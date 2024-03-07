@@ -9,6 +9,8 @@ from scene import Scene
 # stereo
 import os
 from config import *
+# toggle cameras
+from cam_toggle import toggle_camera
 
 # origin window position on screen
 WIN_INIT = '0, 0'
@@ -96,13 +98,7 @@ class GraphicsEngine:
             self.check_events()
             self.camera.update()
             if cam_toggle:
-                # Check if it's time to toggle cam_separation
-                if current_time - self.last_toggle_time > self.toggle_interval:
-                    new_cam_separation = cam_separation_2 if self.camera.cam_separation == cam_separation_1 else cam_separation_1
-                    self.camera.cam_separation = new_cam_separation
-                    # Reset last toggle time
-                    self.last_toggle_time = current_time
-
+                self.last_toggle_time = toggle_camera(self.camera, current_time, self.last_toggle_time, self.toggle_interval)
             self.render()
             self.delta_time = self.clock.tick(60)
 
