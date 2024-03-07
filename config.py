@@ -32,7 +32,8 @@ cam_separation = -.1 # not accurated
 mirror_mode = False
 
 # Camera position fix (no calibrated for movement)
-fix_camera = True# Only for stereo_view = True
+# # Only for stereo_view = True
+fix_camera = True
 camera_position = (0, 5, 5)
 forward = (0, 5, 0)
 draw_lines_position = False
@@ -40,7 +41,7 @@ draw_line_forward = True
 
 # cam change at x seconds
 cam_toggle = True
-toggle_interval= 3 # seconds
+toggle_interval= 1 # seconds
 # cam_separation_1 = .05
 # cam_separation_2 = .1
 cam_separation_1 = 1
@@ -48,13 +49,14 @@ cam_separation_2 = 2
 
 # draw lines cam separation
 draw_lines_cams = True
-test_cameras = False      # fix_camera = True and cam_toggle = True
+test_cameras = True          # fix_camera = True and cam_toggle = True
 
 # Test cameras transformation # test_cameras = True
-from math import degrees, atan, tan, radians
+# just works for camera_position = (0, 5, 5); forward = (0, 5, 0)
+from math import atan, tan
 increase_z = 1 # increase distance to explore the cameras
-separation = cam_separation_2 # cam_separation_1 o _2
+separation = cam_separation_1 # cam_separation_1 o _2
 screen = -1 # left -1; right 1
-tan_angle = tan(radians(degrees(atan(camera_position[2]/(separation/2)))))
+tan_angle = tan(atan(camera_position[2]/(separation/2)))
 new_x_position = ((camera_position[2] + increase_z)/tan_angle)-(separation/2)
 back = (new_x_position*screen, 0, increase_z)
