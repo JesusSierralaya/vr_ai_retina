@@ -59,9 +59,10 @@ class GraphicsEngine:
         self.mesh = Mesh(self)
         # scene
         self.scene = Scene(self)
-        # toggle distance cam
+        # toggle distance cam ----------------------------------------
         self.toggle_interval = toggle_interval  # seconds
         self.last_toggle_time = 0  # tracks the last toggle time
+        # toggle distance cam END ----------------------------------------
 
 
     def check_events(self):
@@ -97,8 +98,10 @@ class GraphicsEngine:
             self.get_time()
             self.check_events()
             self.camera.update()
+            # toogle distance cam ------------------------------------------
             if cam_toggle:
                 self.last_toggle_time = toggle_camera(self.camera, current_time, self.last_toggle_time, self.toggle_interval)
+            # toogle distance cam END ------------------------------------------
             self.render()
             self.delta_time = self.clock.tick(60)
 

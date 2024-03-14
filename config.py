@@ -36,7 +36,7 @@ mirror_mode = False
 fix_camera = True
 camera_position = (0, 5, 5)
 forward = (0, 5, 0)
-draw_lines_position = False
+draw_lines_position = False # camera position
 draw_line_forward = True
 
 # cam change at x seconds
@@ -48,8 +48,8 @@ cam_separation_1 = 1
 cam_separation_2 = 2
 
 # draw lines cam separation
-draw_lines_cams = True
-test_cameras = True          # fix_camera = True and cam_toggle = True
+draw_lines_cams = False
+test_cameras = False # fix_camera = True and cam_toggle = True
 
 # Test cameras transformation # test_cameras = True
 # just works for camera_position = (0, 5, 5); forward = (0, 5, 0)

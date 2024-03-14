@@ -103,7 +103,6 @@ class Camera:
                 cam_offset = (self.cam_separation / 2) * (-1 if left else 1)
                 cam_position = camera_position + self.right * cam_offset
                 if test_cameras:
-                    # back: to explore the cameras position
                     return glm.lookAt(cam_position + back, forward, self.up)
                 else:
                     print(cam_position)
