@@ -56,7 +56,7 @@ class Scene:
             add(Cube(app, tex_id='white', pos=forward, scale=(100, 0.01, 0.01)))
 
         # add lines
-        from line import Line
+        from custom.line import Line
         # add(Line(app, (0.5, 5, 5), forward, 'blue'))  # Uses default tex_id and thickness
         # add(Line(app, (-0.5, 5, 5), forward, 'blue'))  # Uses default tex_id and thickness
 

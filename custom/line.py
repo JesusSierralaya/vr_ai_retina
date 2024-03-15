@@ -1,4 +1,8 @@
 # line.py
+
+'''
+Adds a line from one point to other
+'''
 import numpy as np
 from model import Cube
 
@@ -9,7 +13,6 @@ def Line(app, start_point, end_point, tex_id='white', thickness=0.02):
     direction = end_point - start_point
     length = np.linalg.norm(direction)
 
-    # You mentioned that 0.5 worked well for your adjustment factor, so let's use it
     adjustment_factor = 0.5
     adjusted_length = length * adjustment_factor
 

@@ -10,7 +10,7 @@ from scene import Scene
 import os
 from config import *
 # toggle cameras
-from cam_toggle import toggle_camera
+from custom.cam_toggle import toggle_camera
 
 # origin window position on screen
 WIN_INIT = '0, 0'
