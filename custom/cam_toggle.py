@@ -9,7 +9,7 @@ from config import cam_separation_1, cam_separation_2
 # Initialize the last toggle time as a global variable to maintain state across calls
 last_toggle_time = 0
 
-def toggle_camera(camera, current_time, last_toggle_time, toggle_interval):
+def toggle_camera(camera, current_time, toggle_interval):
     """
     Toggles the camera separation based on the current time and the last toggle time.
 
