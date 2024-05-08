@@ -14,8 +14,10 @@ NEAR = 0.1
 FAR = 100
 # SPEED = 0.01
 # SENSITIVITY = 0.05
-SPEED = 0.005
-SENSITIVITY = 0.005
+# SPEED = 0.005
+# SENSITIVITY = 0.005
+SPEED = 0.01
+SENSITIVITY = 0.05
 
 class Camera:
     # yaw = 90 to turn around becuase the yaw will change

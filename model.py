@@ -100,7 +100,7 @@ class BaseSurface(BaseModel):
 def create_surface_class(surface_id):
     class Surface(BaseSurface):
         from config import position, rotation, scale
-        def __init__(self, app, tex_id='cm', pos=position, rot=rotation, scale=scale):
+        def __init__(self, app, tex_id='red_2', pos=position, rot=rotation, scale=scale):
             vao_name = f'surface_{surface_id}'
             super().__init__(app, vao_name, tex_id, pos, rot, scale)
     return Surface
