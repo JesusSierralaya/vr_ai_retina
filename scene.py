@@ -22,7 +22,7 @@ class Scene:
             # add(Cube(app, tex_id='green', scale=(.1, long_axis, .1),pos=(0,4,2), rot=(20,40,0)))
             # add(Cube(app, tex_id='red', scale=(.1, .1, long_axis),pos=(0,4,2), rot=(0,0,0)))
             # add(Duck(app, pos=(0, 3,0), scale=(.06,.06,.06), rot=(-90, 0,30)))
-            add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(-90, 0, -60)))
+            add(Fish(app, pos=forward, scale=(.1, .1, .1), rot=(90, 0, -60)))
 
 
         # Reference cube
@@ -41,7 +41,8 @@ class Scene:
         # add(Cube(app, pos=(0, 5, -15), rot=(0, 0, 0), tex_id='red')) # red_2, test
         # add cube
         if cube_sample:
-            add(Cube(app, pos=(0, 5, -5), rot=(45, 45, 0), tex_id='red')) # red_2, test
+            # add(Cube(app, pos=(0, 5, -5), rot=(45, -45, 0), tex_id='red')) # red_2, test
+            add(Cube(app, pos=(0, 5, 0), rot=(-40, -45, 0), tex_id='test', scale=(.3, .3, .3))) # red_2, test
             # add(Venus(app, pos=(0, -2, -15))) # red_2, test
             # add(Duck(app, pos=(0, 0, -15))) # red_2, test
         # add line reference
@@ -111,16 +112,24 @@ class Scene:
             add(Turtle(app, pos=(-dist*2, dist*2, 0)))
 
         # Surfaces -------------------------------------------
-        from config import surface_from, surface_to
-        if surface_from > 0 and surface_to > 0:
-            for i in range(surface_from, surface_to + 1):
-                # Dynamically generate the class name for the Surface
-                surface_class = globals()[f'Surface{i}']
-                # Create an instance of the Surface with the specified 'pos'
-                surface_instance = surface_class(app)
-                # Add the surface instance to the application
-                add(surface_instance)
+        # from config import surface_from, surface_to
+        # if surface_from > 0 and surface_to > 0:
+        #     for i in range(surface_from, surface_to + 1):
+        #         # Dynamically generate the class name for the Surface
+        #         surface_class = globals()[f'Surface{i}']
+        #         # Create an instance of the Surface with the specified 'pos'
+        #         surface_instance = surface_class(app)
+        #         # Add the surface instance to the application
+        #         add(surface_instance)
         # Surfaces END -------------------------------------------
+        #
+        # Surface individual
+        for i in range(surface_from, surface_to + 1):
+            # Get the class dynamically from globals
+            SurfaceClass = globals()[f'Surface{i}']
+            # Create an instance of the class and pass it to the add function
+            add(SurfaceClass(app, pos=position, tex_id=f'surface_{i}'))
+
 
     def render(self, left=False):
         for obj in self.objects:

@@ -20,8 +20,12 @@ class Texture:
         self.textures['blue'] = self.get_texture(path='textures/blue.png')
         self.textures['white'] = self.get_texture(path='textures/white.png')
 
-        # surface textures
+        # others
         self.textures['cm'] = self.get_texture(path='textures/surface_cm.jpeg')
+
+        # surface textures
+        for i in range(1, 12):
+            self.textures[f'surface_{i}'] = self.get_texture(path=f'textures/surface_{i}.png')
 
         # object textures ------------------------------------------
         self.textures['cat'] = self.get_texture(path='objects/cat/20430_cat_diff_v1.jpg')
