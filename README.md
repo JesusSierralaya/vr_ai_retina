@@ -13,23 +13,34 @@ Alzheimer’s disease is difficult to detect in its earliest stages. However, re
 > *Innovation: This is the first approach to combine 3D VR retinal visualization with AI-driven analysis for early-stage Alzheimer’s detection.*
 
 ## 📁 Project Structure
-.
-├── objects/ # 3D object models (retinal surfaces, etc.)
-├── shaders/ # GLSL shaders for lighting and texture rendering
-├── surfaces_data/ # Layered surface data (OCT scans)
-├── textures/ # Texture data for rendering
-├── camera.py # Camera system for VR navigation
-├── config.py # Project configuration and constants
-├── light.py # Lighting setup (e.g., Phong illumination)
-├── main.py # Entry point to run the VR app
-├── mesh.py # Scene mesh handling
-├── model.py # 3D object definitions
-├── scene.py # Scene management and rendering pipeline
-├── shader_program.py # Shader program handling
-├── texture.py # Texture loading utilities
-├── vao.py / vbo.py # OpenGL VAO and VBO management
-└── README.md # You're here!
 
+├── objects/ # 3D object models (retinal surfaces, etc.)
+
+├── shaders/ # GLSL shaders for lighting and texture rendering
+
+├── surfaces_data/ # Layered surface data (OCT scans)
+
+├── textures/ # Texture data for rendering
+
+├── camera.py # Camera system for VR navigation
+
+├── config.py # Project configuration and constants
+
+├── light.py # Lighting setup (e.g., Phong illumination)
+
+├── main.py # Entry point to run the VR app
+
+├── mesh.py # Scene mesh handling
+
+├── model.py # 3D object definitions
+
+├── scene.py # Scene management and rendering pipeline
+
+├── shader_program.py # Shader program handling
+
+├── texture.py # Texture loading utilities
+
+└── vao.py / vbo.py # OpenGL VAO and VBO management
 
 ## 🧪 Methods
 
